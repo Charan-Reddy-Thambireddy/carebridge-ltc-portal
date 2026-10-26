@@ -78,7 +78,7 @@ a:hover { text-decoration-thickness: 3px; }
 @media (min-width: 60rem) { .hero .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); } }
 .eyebrow { font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: 0.06em; text-transform: uppercase; color: var(--halo); }
 .hero h1 { font-size: var(--step-3); margin-block: 0.75rem 1rem; letter-spacing: -0.01em; }
-.hero .lead { font-size: var(--step-1); color: var(--band-muted); max-width: 34rem; }
+.hero .lead { display: grid; gap: 0.9rem; font-size: var(--step-0); color: var(--band-muted); max-width: 36rem; }
 .hero .lead strong { color: var(--band-ink); font-weight: 600; }
 .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 2.75rem; padding: 0.55rem 1.25rem; border: 2px solid var(--halo); border-radius: 4px; background: var(--halo); color: var(--halo-ink); font-weight: 600; text-decoration: none; }
@@ -202,9 +202,13 @@ footer .wrap { display: grid; gap: 0.6rem; }
   <div class="hero" id="top">
     <div class="wrap">
       <div>
-        <p class="eyebrow">Senior .NET Full Stack Developer &#183; WCAG 2.1 AA</p>
-        <h1>Accessible public-benefits software, from the SQL table to the screen reader.</h1>
-        <p class="lead">I'm Charan Reddy. I have <strong>8+ years</strong> of experience building C# / ASP.NET Core services and Angular and React front ends. I currently work on a <strong>Medicaid and Medicare long-term care platform</strong> for a city social services agency.</p>
+        <p class="eyebrow">Senior .NET Full Stack Developer</p>
+        <h1>Charan Reddy</h1>
+        <div class="lead">
+          <p>Senior Full Stack Developer with <strong>8+ years</strong> of experience in large, product-based, multi-team environments, working across UI, backend APIs, data access, cloud infrastructure and releases.</p>
+          <p>I build data-heavy enterprise platforms with <strong>Angular and React</strong> front ends and <strong>ASP.NET Core</strong> microservices, modernize legacy services to .NET 6/8, and tune SQL Server data access. I'm a trusted contributor to Azure DevOps CI/CD, Azure App Services deployments and production support.</p>
+          <p>I'm currently a Senior Consultant on a <strong>Medicaid and Medicare long-term care platform</strong>, building accessible interfaces to WCAG 2.1 AA.</p>
+        </div>
         <div class="actions">
           <a class="btn" href="demo/index.html">Open the live demo</a>
           <a class="btn ghost" href="https://github.com/Charan-Reddy-Thambireddy/carebridge-ltc-portal">Source code on GitHub</a>
