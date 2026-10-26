@@ -1,0 +1,101 @@
+.bcn-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--bcn-space-5);
+  border: 1px solid var(--bcn-color-border-subtle);
+  border-top: 5px solid var(--bcn-color-primary);
+  border-radius: var(--bcn-radius-md);
+  background: var(--bcn-color-surface);
+
+  &__title {
+    font-size: var(--bcn-font-size-lg);
+  }
+
+  &__footer {
+    margin-top: auto;
+    padding-top: var(--bcn-space-3);
+  }
+
+  > :last-child { margin-bottom: 0; }
+
+  @media (forced-colors: active) {
+    border: 2px solid CanvasText;
+  }
+}
+
+.bcn-panel {
+  padding: var(--bcn-space-5);
+  border: 1px solid var(--bcn-color-border-subtle);
+  border-radius: var(--bcn-radius-md);
+  background: var(--bcn-color-surface);
+
+  > :last-child { margin-bottom: 0; }
+}
+
+.bcn-hero {
+  padding-block: var(--bcn-space-7);
+  background: var(--bcn-color-surface);
+  border-bottom: 1px solid var(--bcn-color-border-subtle);
+
+  h1 {
+    max-width: 22ch;
+    font-size: clamp(2rem, 1.4rem + 2.4vw, 2.875rem);
+  }
+}
+
+// Key/value summaries (beneficiary details, case facts).
+.bcn-summary-list {
+  display: grid;
+  grid-template-columns: minmax(8rem, max-content) 1fr;
+  gap: var(--bcn-space-2) var(--bcn-space-5);
+  margin: 0;
+  max-width: none;
+
+  dt {
+    font-weight: var(--bcn-font-weight-bold);
+  }
+
+  dd {
+    margin: 0;
+  }
+}
+
+.bcn-checklist {
+  padding-left: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: var(--bcn-space-2);
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0.25rem;
+      top: 0.45em;
+      width: 0.5rem;
+      height: 0.875rem;
+      border: solid var(--bcn-color-success);
+      border-width: 0 3px 3px 0;
+      transform: rotate(45deg);
+    }
+  }
+}
+
+// Screening result cards
+.bcn-result {
+  padding: var(--bcn-space-5);
+  border: 2px solid var(--bcn-color-border);
+  border-radius: var(--bcn-radius-md);
+  background: var(--bcn-color-surface);
+
+  &--yes { border-color: var(--bcn-color-success); }
+
+  &__verdict {
+    font-size: var(--bcn-font-size-lg);
+    font-weight: var(--bcn-font-weight-bold);
+  }
+
+  > :last-child { margin-bottom: 0; }
+}

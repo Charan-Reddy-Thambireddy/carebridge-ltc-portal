@@ -1,0 +1,125 @@
+// Error summary, alerts, status badges and the visually-hidden live region.
+
+.bcn-error-summary {
+  margin-bottom: var(--bcn-space-6);
+  padding: var(--bcn-space-5);
+  border: 5px solid var(--bcn-color-error);
+  background: var(--bcn-color-surface);
+
+  &__title {
+    font-size: var(--bcn-font-size-lg);
+    margin-bottom: var(--bcn-space-3);
+  }
+
+  ul {
+    margin: 0;
+    padding-left: var(--bcn-space-5);
+  }
+
+  a {
+    color: var(--bcn-color-error);
+    font-weight: var(--bcn-font-weight-bold);
+  }
+
+  &:focus {
+    // Focus is moved here programmatically on submit; show a strong indicator.
+    outline: 3px solid var(--bcn-color-focus-ink) !important;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 6px var(--bcn-color-focus) !important;
+  }
+}
+
+.bcn-alert {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--bcn-space-3);
+  margin-bottom: var(--bcn-space-5);
+  padding: var(--bcn-space-4);
+  border-left: 6px solid var(--bcn-color-info);
+  background: var(--bcn-color-info-tint);
+
+  > :last-child { margin-bottom: 0; }
+
+  &__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 0.125rem;
+    color: var(--bcn-color-info);
+  }
+
+  &__body > :last-child { margin-bottom: 0; }
+
+  &--success {
+    border-left-color: var(--bcn-color-success);
+    background: var(--bcn-color-success-tint);
+    .bcn-alert__icon { color: var(--bcn-color-success); }
+  }
+
+  &--warning {
+    border-left-color: var(--bcn-color-warning);
+    background: var(--bcn-color-warning-tint);
+    .bcn-alert__icon { color: var(--bcn-color-warning); }
+  }
+
+  &--error {
+    border-left-color: var(--bcn-color-error);
+    background: var(--bcn-color-error-tint);
+    .bcn-alert__icon { color: var(--bcn-color-error); }
+  }
+
+  @media (forced-colors: active) {
+    border: 2px solid CanvasText;
+  }
+}
+
+// Status badges always contain words; the shape/icon distinguishes them for color-blind users.
+.bcn-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.125rem 0.625rem;
+  border: 1px solid currentColor;
+  border-radius: var(--bcn-radius-pill);
+  font-size: var(--bcn-font-size-sm);
+  font-weight: var(--bcn-font-weight-bold);
+  white-space: nowrap;
+  color: var(--bcn-color-ink);
+  background: var(--bcn-color-surface);
+
+  &::before {
+    content: "";
+    width: 0.625rem;
+    height: 0.625rem;
+    flex: none;
+    background: currentColor;
+    border-radius: 50%;
+  }
+
+  &--success { color: var(--bcn-color-success); background: var(--bcn-color-success-tint); }
+  &--warning { color: var(--bcn-color-warning); background: var(--bcn-color-warning-tint); &::before { border-radius: 0; transform: rotate(45deg); } }
+  &--error   { color: var(--bcn-color-error);   background: var(--bcn-color-error-tint);   &::before { border-radius: 1px; } }
+  &--info    { color: var(--bcn-color-info);    background: var(--bcn-color-info-tint); }
+  &--neutral { color: var(--bcn-color-ink-muted); &::before { background: transparent; border: 2px solid currentColor; } }
+}
+
+.bcn-loading {
+  display: flex;
+  align-items: center;
+  gap: var(--bcn-space-3);
+  padding: var(--bcn-space-5);
+  color: var(--bcn-color-ink-muted);
+
+  &::before {
+    content: "";
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 3px solid var(--bcn-color-border-subtle);
+    border-top-color: var(--bcn-color-primary);
+    border-radius: 50%;
+    animation: bcn-spin 0.8s linear infinite;
+  }
+}
+
+@keyframes bcn-spin {
+  to { transform: rotate(360deg); }
+}

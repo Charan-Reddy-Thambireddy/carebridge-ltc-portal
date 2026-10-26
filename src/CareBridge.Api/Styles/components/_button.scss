@@ -1,0 +1,70 @@
+// Buttons: one base class plus modifiers. Never style a <div> or <a> as a button for actions.
+.bcn-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--bcn-space-2);
+  min-height: var(--bcn-target-size);
+  padding: var(--bcn-space-2) var(--bcn-space-5);
+  border: 2px solid var(--bcn-color-primary);
+  border-radius: var(--bcn-radius-sm);
+  background: var(--bcn-color-primary);
+  color: var(--bcn-color-on-primary);
+  font: inherit;
+  font-weight: var(--bcn-font-weight-bold);
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--bcn-motion-duration) var(--bcn-motion-easing);
+
+  &:hover {
+    background: var(--bcn-color-primary-hover);
+    border-color: var(--bcn-color-primary-hover);
+    color: var(--bcn-color-on-primary);
+    text-decoration: none;
+  }
+
+  &--secondary {
+    background: var(--bcn-color-surface);
+    color: var(--bcn-color-primary);
+
+    &:hover {
+      background: var(--bcn-color-primary-tint);
+      color: var(--bcn-color-primary-hover);
+    }
+  }
+
+  &--danger {
+    background: var(--bcn-color-error);
+    border-color: var(--bcn-color-error);
+
+    &:hover {
+      background: #8c1d16;
+      border-color: #8c1d16;
+    }
+  }
+
+  &--small {
+    min-height: 2.25rem;
+    padding: var(--bcn-space-1) var(--bcn-space-3);
+    font-size: var(--bcn-font-size-sm);
+  }
+
+  // Use aria-disabled (still focusable, still announced) rather than removing the button from tab order.
+  &[aria-disabled="true"] {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  @media (forced-colors: active) {
+    border-color: ButtonText;
+  }
+}
+
+.bcn-button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--bcn-space-3);
+  align-items: center;
+}

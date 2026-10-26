@@ -1,0 +1,48 @@
+// ARIA tabs (WAI-ARIA Authoring Practices "Tabs with automatic activation").
+// Selected state shown by a thick bar + bold weight + background, not color alone.
+.bcn-tabs {
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--bcn-space-1);
+    border-bottom: 2px solid var(--bcn-color-border);
+  }
+
+  &__tab {
+    min-height: var(--bcn-target-size);
+    margin-bottom: -2px;
+    padding: var(--bcn-space-2) var(--bcn-space-4);
+    border: 2px solid transparent;
+    border-bottom: 0;
+    border-radius: var(--bcn-radius-sm) var(--bcn-radius-sm) 0 0;
+    background: transparent;
+    color: var(--bcn-color-primary);
+    font: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:hover { background: var(--bcn-color-primary-tint); }
+
+    &[aria-selected="true"] {
+      border-color: var(--bcn-color-border);
+      border-top: 5px solid var(--bcn-color-primary);
+      background: var(--bcn-color-surface);
+      color: var(--bcn-color-ink);
+      font-weight: var(--bcn-font-weight-bold);
+      text-decoration: none;
+    }
+
+    @media (forced-colors: active) {
+      &[aria-selected="true"] { border-color: Highlight; }
+    }
+  }
+
+  &__panel {
+    padding: var(--bcn-space-5);
+    border: 2px solid var(--bcn-color-border);
+    border-top: 0;
+    background: var(--bcn-color-surface);
+
+    > :last-child { margin-bottom: 0; }
+  }
+}

@@ -1,0 +1,14 @@
+// =============================================================================
+// CareBridge — Beacon Design System entry point
+// Compiled with Dart Sass:  npm run sass:build
+// Output: wwwroot/css/site.css (committed so the app runs without a Node toolchain)
+// =============================================================================
+@use "base/base";
+@use "layout/layout";
+@use "components/button";
+@use "components/form";
+@use "components/feedback";
+@use "components/card";
+@use "components/table";
+@use "components/tabs";
+@use "components/dialog";

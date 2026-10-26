@@ -1,0 +1,136 @@
+@use "../tokens/tokens" as t;
+@use "../tokens/mixins" as m;
+
+:root {
+  @include t.emit-custom-properties;
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// Components set `display`, which would otherwise override the hidden attribute.
+[hidden] {
+  display: none !important;
+}
+
+html {
+  // Never set a fixed px font size on html: users' browser text-size preference must apply (SC 1.4.4).
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bcn-color-canvas);
+  color: var(--bcn-color-ink);
+  font-family: var(--bcn-font-family-base);
+  font-size: var(--bcn-font-size-base);
+  line-height: var(--bcn-font-line-height-base);
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 var(--bcn-space-4);
+  line-height: var(--bcn-font-line-height-tight);
+  font-weight: var(--bcn-font-weight-bold);
+}
+
+h1 { font-size: var(--bcn-font-size-2xl); }
+h2 { font-size: var(--bcn-font-size-xl); }
+h3 { font-size: var(--bcn-font-size-lg); }
+
+p,
+ul,
+ol,
+dl {
+  margin: 0 0 var(--bcn-space-4);
+  max-width: 70ch; // comfortable line length for reading
+}
+
+a {
+  color: var(--bcn-color-primary);
+  // Links in body text are underlined so they are not identified by color alone (SC 1.4.1).
+  text-decoration: underline;
+  text-decoration-thickness: max(1px, 0.0625em);
+  text-underline-offset: 0.15em;
+
+  &:hover {
+    color: var(--bcn-color-primary-hover);
+    text-decoration-thickness: max(3px, 0.1875em);
+  }
+}
+
+// One focus style for everything. :focus-visible avoids showing the ring on mouse click
+// for buttons, while keyboard users always see it.
+:focus-visible {
+  @include m.focus-ring;
+}
+
+// Elements that receive programmatic focus (headings, error summary) should not show
+// a ring that looks clickable, but must still be announced.
+[tabindex="-1"]:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+.bcn-visually-hidden {
+  @include m.visually-hidden;
+}
+
+.bcn-container {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: var(--bcn-space-4);
+
+  @include m.breakpoint("md") {
+    padding-inline: var(--bcn-space-5);
+  }
+}
+
+.bcn-lead {
+  font-size: var(--bcn-font-size-lg);
+  color: var(--bcn-color-ink-muted);
+}
+
+.bcn-stack > * + * {
+  margin-top: var(--bcn-space-5);
+}
+
+// Respect the operating-system "reduce motion" setting (SC 2.3.3).
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// Windows High Contrast / forced colors: keep boundaries and focus visible using system colors.
+@media (forced-colors: active) {
+  :focus-visible {
+    outline: 3px solid Highlight;
+    box-shadow: none;
+  }
+}

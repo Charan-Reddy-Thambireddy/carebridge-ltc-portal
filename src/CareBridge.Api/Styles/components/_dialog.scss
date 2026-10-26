@@ -1,0 +1,51 @@
+@use "../tokens/mixins" as m;
+
+// Native <dialog> opened with showModal(): the browser makes the rest of the page inert,
+// traps focus and closes on Escape. We add labelling, initial focus and focus return in JS.
+.bcn-dialog {
+  width: min(36rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  padding: 0;
+  border: 2px solid var(--bcn-color-ink);
+  border-radius: var(--bcn-radius-md);
+  background: var(--bcn-color-surface);
+  color: var(--bcn-color-ink);
+  overflow: auto;
+
+  &::backdrop {
+    background: rgb(11 12 12 / 0.65);
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--bcn-space-3);
+    padding: var(--bcn-space-5) var(--bcn-space-5) 0;
+
+    h2 { margin: 0; font-size: var(--bcn-font-size-xl); }
+  }
+
+  &__close {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: var(--bcn-target-size);
+    height: var(--bcn-target-size);
+    border: 2px solid var(--bcn-color-border);
+    border-radius: var(--bcn-radius-sm);
+    background: var(--bcn-color-surface);
+    color: var(--bcn-color-ink);
+    cursor: pointer;
+
+    svg { width: 1.25rem; height: 1.25rem; }
+  }
+
+  &__body {
+    padding: var(--bcn-space-5);
+  }
+
+  &__footer {
+    padding: 0 var(--bcn-space-5) var(--bcn-space-5);
+  }
+}

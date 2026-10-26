@@ -1,0 +1,91 @@
+# Azure DevOps pipeline: build -> test -> accessibility gate -> publish artifact.
+# The deployment stage targets an Azure App Service; service connection and app names are placeholders.
+trigger:
+  branches:
+    include: [main]
+
+pr:
+  branches:
+    include: [main]
+
+variables:
+  buildConfiguration: Release
+  dotnetVersion: 8.0.x
+
+stages:
+  - stage: Build
+    displayName: Build and test
+    jobs:
+      - job: dotnet
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - task: UseDotNet@2
+            inputs:
+              packageType: sdk
+              version: $(dotnetVersion)
+
+          - script: dotnet restore CareBridge.sln
+            displayName: Restore
+
+          - script: dotnet build CareBridge.sln -c $(buildConfiguration) --no-restore
+            displayName: Build
+
+          - task: DotNetCoreCLI@2
+            displayName: Unit and integration tests
+            inputs:
+              command: test
+              projects: tests/**/*.csproj
+              arguments: -c $(buildConfiguration) --no-build --collect:"XPlat Code Coverage"
+              publishTestResults: true
+
+          - script: dotnet publish src/CareBridge.Api/CareBridge.Api.csproj -c $(buildConfiguration) --no-build -o $(Build.ArtifactStagingDirectory)/app
+            displayName: Publish
+
+          - publish: $(Build.ArtifactStagingDirectory)/app
+            artifact: carebridge-app
+
+      - job: accessibility
+        displayName: Accessibility gate (axe-core)
+        dependsOn: dotnet
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - task: UseDotNet@2
+            inputs:
+              packageType: sdk
+              version: $(dotnetVersion)
+          - task: NodeTool@0
+            inputs:
+              versionSpec: 20.x
+          - script: npm install --no-audit --no-fund && npm run sass:build
+            displayName: Install tooling and compile Sass
+          - script: npx playwright install --with-deps chromium
+            displayName: Install Chromium
+          - script: npm run test:a11y
+            displayName: WCAG 2.1 AA automated checks
+            env:
+              CI: "true"
+          - publish: playwright-report
+            artifact: playwright-report
+            condition: always()
+
+  - stage: DeployDev
+    displayName: Deploy to Dev
+    dependsOn: Build
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+      - deployment: deploy
+        environment: carebridge-dev   # approvals and checks are configured on the environment
+        pool:
+          vmImage: ubuntu-latest
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureWebApp@1
+                  inputs:
+                    azureSubscription: "<service-connection-name>"
+                    appType: webAppLinux
+                    appName: "<app-service-name>"
+                    package: $(Pipeline.Workspace)/carebridge-app

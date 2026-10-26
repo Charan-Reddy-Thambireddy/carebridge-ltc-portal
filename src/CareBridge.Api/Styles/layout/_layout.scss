@@ -1,0 +1,201 @@
+@use "../tokens/mixins" as m;
+
+.bcn-skip-link {
+  position: absolute;
+  top: var(--bcn-space-2);
+  left: var(--bcn-space-2);
+  z-index: 100;
+  padding: var(--bcn-space-3) var(--bcn-space-4);
+  background: var(--bcn-color-focus);
+  color: var(--bcn-color-focus-ink);
+  font-weight: var(--bcn-font-weight-bold);
+  text-decoration: underline;
+  transform: translateY(-200%);
+
+  &:focus {
+    transform: none;
+  }
+}
+
+.bcn-demo-banner {
+  padding: var(--bcn-space-2) 0;
+  background: var(--bcn-color-warning-tint);
+  color: var(--bcn-color-ink);
+  font-size: var(--bcn-font-size-sm);
+  border-bottom: 1px solid var(--bcn-color-border-subtle);
+
+  p {
+    margin-block: 0;
+    max-width: 72rem;
+  }
+}
+
+.bcn-header {
+  background: var(--bcn-color-header);
+  color: var(--bcn-color-on-header);
+
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--bcn-space-3);
+    padding-block: var(--bcn-space-3);
+  }
+
+  &__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--bcn-space-3);
+    min-height: var(--bcn-target-size);
+    color: inherit;
+    text-decoration: none;
+    font-weight: var(--bcn-font-weight-bold);
+    font-size: var(--bcn-font-size-lg);
+
+    &:hover {
+      color: inherit;
+      text-decoration: underline;
+    }
+  }
+
+  &__logo {
+    width: 2.25rem;
+    height: 2.25rem;
+    flex: none;
+  }
+
+  &__tagline {
+    display: block;
+    font-size: var(--bcn-font-size-sm);
+    font-weight: var(--bcn-font-weight-regular);
+    color: var(--bcn-color-on-header-muted);
+  }
+
+  &__menu-toggle {
+    min-height: var(--bcn-target-size);
+    min-width: var(--bcn-target-size);
+    padding: 0 var(--bcn-space-4);
+    border: 2px solid var(--bcn-color-on-header);
+    border-radius: var(--bcn-radius-sm);
+    background: transparent;
+    color: var(--bcn-color-on-header);
+    font: inherit;
+    font-weight: var(--bcn-font-weight-bold);
+    cursor: pointer;
+
+    @include m.breakpoint("md") {
+      display: none;
+    }
+  }
+}
+
+.bcn-nav {
+  flex-basis: 100%;
+
+  // Without JavaScript the menu is always shown; JS adds .js to <html> and collapses it on small screens.
+  .js &[data-open="false"] {
+    display: none;
+
+    @include m.breakpoint("md") {
+      display: block;
+    }
+  }
+
+  @include m.breakpoint("md") {
+    flex-basis: auto;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--bcn-space-1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-width: none;
+
+    @include m.breakpoint("md") {
+      flex-direction: row;
+      gap: var(--bcn-space-2);
+    }
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    min-height: var(--bcn-target-size);
+    padding: 0 var(--bcn-space-3);
+    color: var(--bcn-color-on-header);
+    text-decoration: none;
+    border-bottom: 4px solid transparent;
+
+    &:hover {
+      color: var(--bcn-color-on-header);
+      text-decoration: underline;
+    }
+
+    // Current page is indicated by aria-current AND a visible bar, not color alone.
+    &[aria-current="page"] {
+      border-bottom-color: var(--bcn-color-focus);
+      font-weight: var(--bcn-font-weight-bold);
+    }
+  }
+}
+
+.bcn-breadcrumbs {
+  padding-top: var(--bcn-space-4);
+  font-size: var(--bcn-font-size-sm);
+
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--bcn-space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-width: none;
+  }
+
+  li + li::before {
+    content: "/";
+    margin-right: var(--bcn-space-2);
+    color: var(--bcn-color-ink-muted);
+  }
+}
+
+.bcn-main {
+  padding-block: var(--bcn-space-6) var(--bcn-space-8);
+}
+
+.bcn-footer {
+  margin-top: auto;
+  padding-block: var(--bcn-space-6);
+  background: var(--bcn-color-surface);
+  border-top: 1px solid var(--bcn-color-border-subtle);
+  font-size: var(--bcn-font-size-sm);
+  color: var(--bcn-color-ink-muted);
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--bcn-space-4);
+    padding: 0;
+    list-style: none;
+  }
+}
+
+.bcn-grid {
+  display: grid;
+  gap: var(--bcn-space-5);
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include m.breakpoint("md") {
+    &--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    &--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    &--sidebar { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+  }
+}

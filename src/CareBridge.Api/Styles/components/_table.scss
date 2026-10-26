@@ -1,0 +1,157 @@
+@use "../tokens/mixins" as m;
+
+// Data table. Wrapped in a focusable, labelled scroll region so keyboard users can
+// scroll it horizontally at 400% zoom / 320px width (SC 1.4.10 Reflow, 2.1.1 Keyboard).
+.bcn-table-region {
+  overflow-x: auto;
+  border: 1px solid var(--bcn-color-border-subtle);
+  border-radius: var(--bcn-radius-md);
+  background: var(--bcn-color-surface);
+
+  &[aria-busy="true"] {
+    opacity: 0.6;
+  }
+}
+
+.bcn-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--bcn-font-size-sm);
+
+  caption {
+    padding: var(--bcn-space-4);
+    text-align: left;
+    font-size: var(--bcn-font-size-lg);
+    font-weight: var(--bcn-font-weight-bold);
+  }
+
+  th,
+  td {
+    padding: var(--bcn-space-3) var(--bcn-space-4);
+    border-bottom: 1px solid var(--bcn-color-border-subtle);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  thead th {
+    background: var(--bcn-color-canvas);
+    border-bottom: 2px solid var(--bcn-color-ink);
+    white-space: nowrap;
+  }
+
+  tbody tr:hover {
+    background: var(--bcn-color-primary-tint);
+  }
+
+  tbody th a {
+    white-space: nowrap;
+  }
+
+  &__numeric {
+    text-align: right !important;
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (forced-colors: active) {
+    th, td { border: 1px solid CanvasText; }
+  }
+}
+
+// Sortable column header: the <button> carries the label, <th aria-sort> carries the state.
+.bcn-sort-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--bcn-space-2);
+  min-height: var(--bcn-target-size);
+  margin: calc(var(--bcn-space-3) * -1) calc(var(--bcn-space-2) * -1);
+  padding: 0 var(--bcn-space-2);
+  border: 0;
+  background: transparent;
+  color: var(--bcn-color-primary);
+  font: inherit;
+  font-weight: var(--bcn-font-weight-bold);
+  text-decoration: underline;
+  cursor: pointer;
+
+  &__icon {
+    width: 0.75rem;
+    height: 1rem;
+    flex: none;
+  }
+
+  // Arrow shape changes with state so the direction is not conveyed by color.
+  .bcn-sort-up,
+  .bcn-sort-down { opacity: 0.35; }
+
+  [aria-sort="ascending"] & .bcn-sort-up,
+  [aria-sort="descending"] & .bcn-sort-down { opacity: 1; }
+}
+
+.bcn-filters {
+  display: grid;
+  gap: var(--bcn-space-4);
+  align-items: end;
+  margin-bottom: var(--bcn-space-5);
+  padding: var(--bcn-space-5);
+  border: 1px solid var(--bcn-color-border-subtle);
+  border-radius: var(--bcn-radius-md);
+  background: var(--bcn-color-surface);
+
+  .bcn-form-group { margin: 0; }
+
+  @include m.breakpoint("md") {
+    grid-template-columns: 2fr 1fr 1fr auto;
+  }
+}
+
+.bcn-results-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--bcn-space-3);
+  margin-bottom: var(--bcn-space-3);
+  color: var(--bcn-color-ink-muted);
+
+  p { margin: 0; }
+}
+
+.bcn-pagination {
+  margin-top: var(--bcn-space-5);
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--bcn-space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-width: none;
+  }
+
+  button {
+    min-width: var(--bcn-target-size);
+    min-height: var(--bcn-target-size);
+    padding: 0 var(--bcn-space-3);
+    border: 2px solid var(--bcn-color-border);
+    border-radius: var(--bcn-radius-sm);
+    background: var(--bcn-color-surface);
+    color: var(--bcn-color-primary);
+    font: inherit;
+    font-weight: var(--bcn-font-weight-bold);
+    cursor: pointer;
+
+    &:hover { background: var(--bcn-color-primary-tint); }
+
+    &[aria-current="page"] {
+      background: var(--bcn-color-primary);
+      border-color: var(--bcn-color-primary);
+      color: var(--bcn-color-on-primary);
+    }
+
+    &[aria-disabled="true"] {
+      color: var(--bcn-color-ink-muted);
+      cursor: not-allowed;
+      background: var(--bcn-color-canvas);
+    }
+  }
+}

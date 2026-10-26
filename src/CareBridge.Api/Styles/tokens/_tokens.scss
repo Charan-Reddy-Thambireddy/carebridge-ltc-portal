@@ -1,0 +1,106 @@
+// =============================================================================
+// Beacon Design System: design tokens
+// -----------------------------------------------------------------------------
+// Tokens are the single source of truth for color, type, space, radius and
+// motion. Components never use raw hex values; they read CSS custom properties
+// generated from these maps, so a theme (or the future enterprise design
+// system) can be swapped without touching component code.
+//
+// Every text/background pairing below was checked for WCAG 2.1 AA contrast
+// (4.5:1 for body text, 3:1 for large text and UI component boundaries).
+// Ratios are noted next to each color against the surface it is used on.
+// =============================================================================
+
+$color: (
+  "ink":              #1b1f24,  // 16.6:1 on white
+  "ink-muted":        #4a5361,  //  7.8:1 on white
+  "surface":          #ffffff,
+  "canvas":           #f3f5f7,  // page background; ink is 15.2:1 here
+  "border":           #6b7480,  //  4.7:1 on white (exceeds 3:1 for UI boundaries)
+  "border-subtle":    #d5dae0,  // decorative dividers only, never the sole boundary of a control
+  "primary":          #0a5c70,  //  7.6:1 on white
+  "primary-hover":    #07475a,  // 10.2:1 on white
+  "primary-tint":     #e3f1f4,
+  "on-primary":       #ffffff,
+  "focus":            #ffbf47,  // focus halo; paired with an ink outline so it works on any background
+  "focus-ink":        #0b0c0c,
+  "success":          #1d6b3c,  //  6.5:1 on white
+  "success-tint":     #e5f3ea,
+  "warning":          #7a4f00,  //  7.1:1 on white
+  "warning-tint":     #fff4d6,
+  "error":            #b0261d,  //  6.7:1 on white
+  "error-tint":       #fdeceb,
+  "info":             #1f4e99,  //  8.0:1 on white
+  "info-tint":        #e8eef9,
+  "header":           #10303b,  // white text is 13.9:1
+  "on-header":        #ffffff,
+  "on-header-muted":  #c9dde3   //  9.9:1 on header
+);
+
+$space: (
+  "0": 0,
+  "1": 0.25rem,
+  "2": 0.5rem,
+  "3": 0.75rem,
+  "4": 1rem,
+  "5": 1.5rem,
+  "6": 2rem,
+  "7": 3rem,
+  "8": 4rem
+);
+
+$font: (
+  "family-base": #{system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif},
+  "family-mono": #{ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace},
+  "size-sm":   0.9375rem,
+  "size-base": 1.0625rem,
+  "size-lg":   1.25rem,
+  "size-xl":   1.625rem,
+  "size-2xl":  2.25rem,
+  "weight-regular": 400,
+  "weight-bold":    700,
+  "line-height-tight": 1.25,
+  "line-height-base":  1.6
+);
+
+$radius: (
+  "sm": 0.25rem,
+  "md": 0.5rem,
+  "pill": 999px
+);
+
+$motion: (
+  "duration": 150ms,
+  "easing": cubic-bezier(0.2, 0, 0, 1)
+);
+
+// Breakpoints are expressed in em so they respond to the user's text size setting.
+$breakpoints: (
+  "sm": 30em,
+  "md": 48em,
+  "lg": 64em
+);
+
+// Minimum interactive target. WCAG 2.2 SC 2.5.8 asks for 24px; we use 44px (SC 2.5.5 AAA).
+$target-size: 2.75rem;
+
+$prefix: "bcn";
+
+@mixin emit-custom-properties {
+  @each $name, $value in $color {
+    --#{$prefix}-color-#{$name}: #{$value};
+  }
+  @each $name, $value in $space {
+    --#{$prefix}-space-#{$name}: #{$value};
+  }
+  @each $name, $value in $font {
+    --#{$prefix}-font-#{$name}: #{$value};
+  }
+  @each $name, $value in $radius {
+    --#{$prefix}-radius-#{$name}: #{$value};
+  }
+  @each $name, $value in $motion {
+    --#{$prefix}-motion-#{$name}: #{$value};
+  }
+  --#{$prefix}-target-size: #{$target-size};
+}
