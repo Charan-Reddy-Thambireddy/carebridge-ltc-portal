@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Find long-term care and Medicare support programs.">
+  <title>Home – CareBridge</title>
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <script type="module" src="js/layout.js"></script>
+</head>
+<body>
+  <a class="bcn-skip-link" href="#main">Skip to main content</a>
+
+  <header class="bcn-header">
+    <div class="bcn-demo-banner">
+      <p class="bcn-container"><strong>Live demo with fictional data.</strong> Not an official government website. <a href="../index.html">Back to Charan Reddy's portfolio</a></p>
+    </div>
+    <div class="bcn-container bcn-header__inner">
+      <a class="bcn-header__brand" href="index.html">
+        <svg class="bcn-header__logo" viewBox="0 0 36 36" aria-hidden="true" focusable="false"><rect width="36" height="36" rx="8" fill="#ffbf47"/><path d="M7 24c3.5-7 7.5-10.5 11-10.5S25.5 17 29 24" fill="none" stroke="#10303b" stroke-width="3.2" stroke-linecap="round"/><path d="M5 27h26" stroke="#10303b" stroke-width="3.2" stroke-linecap="round"/><circle cx="18" cy="9" r="2.6" fill="#10303b"/></svg>
+        <span>CareBridge <span class="bcn-header__tagline">Long-term care &amp; Medicare support</span></span>
+      </a>
+      <button class="bcn-header__menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" data-menu-toggle hidden>Menu</button>
+      <nav id="primary-nav" class="bcn-nav" aria-label="Main">
+        <ul>
+            <li><a href="index.html" aria-current="page">Home</a></li>
+            <li><a href="eligibility.html">Check eligibility</a></li>
+            <li><a href="cases.html">Caseworker queue</a></li>
+            <li><a href="accessibility.html">Accessibility</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="bcn-hero" aria-labelledby="hero-heading">
+      <div class="bcn-container">
+        <h1 id="hero-heading">Get help paying for long-term care and Medicare costs</h1>
+        <p class="bcn-lead">Find out which programs may help you or a family member stay safe at home, pay for a nursing facility, or lower Medicare premiums.</p>
+        <div class="bcn-button-group">
+          <a class="bcn-button" href="eligibility.html">Check if you may qualify</a>
+          <a class="bcn-button bcn-button--secondary" href="cases.html">Caseworker queue (staff)</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="bcn-container bcn-main bcn-stack">
+      <section aria-labelledby="programs-heading">
+        <h2 id="programs-heading">Programs</h2>
+        <ul class="bcn-grid bcn-grid--3" role="list">
+          <li class="bcn-card">
+            <h3 class="bcn-card__title">Medicaid long-term care</h3>
+            <p>Help paying for care in a nursing facility for people who need help with daily activities and have limited income and assets.</p>
+          </li>
+          <li class="bcn-card">
+            <h3 class="bcn-card__title">Home and community-based services</h3>
+            <p>Support that helps people stay in their own homes: personal care, home-delivered meals, adult day health and respite for caregivers.</p>
+          </li>
+          <li class="bcn-card">
+            <h3 class="bcn-card__title">Medicare Savings Program</h3>
+            <p>Help paying Medicare Part A and Part B premiums, deductibles, coinsurance and copayments.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="bcn-panel" aria-labelledby="built-heading">
+        <h2 id="built-heading">Built accessibility-first</h2>
+        <p>Every page targets <strong>WCAG 2.1 Level AA</strong> and Section 508, and is tested with axe-core, keyboard-only use and screen readers.</p>
+        <ul class="bcn-checklist">
+          <li>Skip link, landmarks and a logical heading structure on every page</li>
+          <li>Forms with visible labels, hints, an error summary and inline messages linked to each field</li>
+          <li>Sortable data table with <code>aria-sort</code>, a caption and announced result counts</li>
+          <li>Keyboard-operable tabs and a modal dialog that traps and returns focus</li>
+          <li>Color contrast of at least 4.5:1, visible focus, 44px targets, reflow at 320px, reduced-motion and high-contrast support</li>
+        </ul>
+        <p><a href="accessibility.html">Read the accessibility statement</a></p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="bcn-footer">
+    <div class="bcn-container">
+      <ul>
+        <li><a href="accessibility.html">Accessibility statement</a></li>
+      </ul>
+      <p>CareBridge is an independent demonstration project. All names, case numbers and IDs are fictional. Eligibility rules use sample values and are not real program policy.</p>
+    </div>
+  </footer>
+
+  <!-- Persistent live regions used by js/a11y/announcer.js (must exist before content changes). -->
+  <div id="bcn-live-polite" class="bcn-visually-hidden" aria-live="polite" aria-atomic="true"></div>
+  <div id="bcn-live-assertive" class="bcn-visually-hidden" aria-live="assertive" aria-atomic="true"></div>
+</body>
+</html>

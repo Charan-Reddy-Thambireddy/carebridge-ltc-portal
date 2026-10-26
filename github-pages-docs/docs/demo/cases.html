@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Search, filter and sort open long-term care cases.">
+  <title>Caseworker queue – CareBridge</title>
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <script type="module" src="js/layout.js"></script>
+  <script type="module" src="js/pages/cases.js"></script>
+</head>
+<body>
+  <a class="bcn-skip-link" href="#main">Skip to main content</a>
+
+  <header class="bcn-header">
+    <div class="bcn-demo-banner">
+      <p class="bcn-container"><strong>Live demo with fictional data.</strong> Not an official government website. <a href="../index.html">Back to Charan Reddy's portfolio</a></p>
+    </div>
+    <div class="bcn-container bcn-header__inner">
+      <a class="bcn-header__brand" href="index.html">
+        <svg class="bcn-header__logo" viewBox="0 0 36 36" aria-hidden="true" focusable="false"><rect width="36" height="36" rx="8" fill="#ffbf47"/><path d="M7 24c3.5-7 7.5-10.5 11-10.5S25.5 17 29 24" fill="none" stroke="#10303b" stroke-width="3.2" stroke-linecap="round"/><path d="M5 27h26" stroke="#10303b" stroke-width="3.2" stroke-linecap="round"/><circle cx="18" cy="9" r="2.6" fill="#10303b"/></svg>
+        <span>CareBridge <span class="bcn-header__tagline">Long-term care &amp; Medicare support</span></span>
+      </a>
+      <button class="bcn-header__menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" data-menu-toggle hidden>Menu</button>
+      <nav id="primary-nav" class="bcn-nav" aria-label="Main">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="eligibility.html">Check eligibility</a></li>
+            <li><a href="cases.html" aria-current="page">Caseworker queue</a></li>
+            <li><a href="accessibility.html">Accessibility</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <div class="bcn-container bcn-main">
+      <nav class="bcn-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="cases.html" aria-current="page">Caseworker queue</a></li>
+        </ol>
+      </nav>
+
+      <h1>Caseworker queue</h1>
+      <p class="bcn-lead">Review open long-term care and Medicare Savings Program cases. Select a case number to view details and decide pending service authorizations.</p>
+
+      <form id="filters" class="bcn-filters" role="search" aria-label="Filter cases">
+        <div class="bcn-form-group">
+          <label class="bcn-label" for="search">Search by name or case number</label>
+          <input class="bcn-input" id="search" name="search" type="search" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="bcn-form-group">
+          <label class="bcn-label" for="status">Status</label>
+          <select class="bcn-select" id="status" name="status">
+            <option value="">All statuses</option>
+          </select>
+        </div>
+        <div class="bcn-form-group">
+          <label class="bcn-label" for="program">Program</label>
+          <select class="bcn-select" id="program" name="program">
+            <option value="">All programs</option>
+          </select>
+        </div>
+        <div class="bcn-button-group">
+          <button class="bcn-button" type="submit">Apply filters</button>
+          <button class="bcn-button bcn-button--secondary" type="reset">Clear</button>
+        </div>
+      </form>
+
+      <div class="bcn-results-meta">
+        <p id="results-summary">Loading cases…</p>
+        <p>Select a column heading to sort.</p>
+      </div>
+
+      <div class="bcn-table-region" id="cases-region" role="region" aria-labelledby="cases-caption" tabindex="0" aria-busy="true">
+        <table class="bcn-table">
+          <caption id="cases-caption">Open cases</caption>
+          <thead>
+            <tr>
+              <th scope="col" data-sort="caseNumber"><button class="bcn-sort-button" type="button">Case number<svg class="bcn-sort-button__icon" viewBox="0 0 12 16" aria-hidden="true" focusable="false"><path class="bcn-sort-up" d="M6 1 11 7H1z" fill="currentColor"/><path class="bcn-sort-down" d="M6 15 1 9h10z" fill="currentColor"/></svg></button></th>
+              <th scope="col" data-sort="beneficiary"><button class="bcn-sort-button" type="button">Beneficiary<svg class="bcn-sort-button__icon" viewBox="0 0 12 16" aria-hidden="true" focusable="false"><path class="bcn-sort-up" d="M6 1 11 7H1z" fill="currentColor"/><path class="bcn-sort-down" d="M6 15 1 9h10z" fill="currentColor"/></svg></button></th>
+              <th scope="col" data-sort="program"><button class="bcn-sort-button" type="button">Program<svg class="bcn-sort-button__icon" viewBox="0 0 12 16" aria-hidden="true" focusable="false"><path class="bcn-sort-up" d="M6 1 11 7H1z" fill="currentColor"/><path class="bcn-sort-down" d="M6 15 1 9h10z" fill="currentColor"/></svg></button></th>
+              <th scope="col" data-sort="status"><button class="bcn-sort-button" type="button">Status<svg class="bcn-sort-button__icon" viewBox="0 0 12 16" aria-hidden="true" focusable="false"><path class="bcn-sort-up" d="M6 1 11 7H1z" fill="currentColor"/><path class="bcn-sort-down" d="M6 15 1 9h10z" fill="currentColor"/></svg></button></th>
+              <th scope="col" data-sort="priority"><button class="bcn-sort-button" type="button">Priority<svg class="bcn-sort-button__icon" viewBox="0 0 12 16" aria-hidden="true" focusable="false"><path class="bcn-sort-up" d="M6 1 11 7H1z" fill="currentColor"/><path class="bcn-sort-down" d="M6 15 1 9h10z" fill="currentColor"/></svg></button></th>
+              <th scope="col" data-sort="opened"><button class="bcn-sort-button" type="button">Opened<svg class="bcn-sort-button__icon" viewBox="0 0 12 16" aria-hidden="true" focusable="false"><path class="bcn-sort-up" d="M6 1 11 7H1z" fill="currentColor"/><path class="bcn-sort-down" d="M6 15 1 9h10z" fill="currentColor"/></svg></button></th>
+              <th scope="col" class="bcn-table__numeric">Pending authorizations</th>
+            </tr>
+          </thead>
+          <tbody id="cases-body">
+            <tr><td colspan="7"><span class="bcn-loading">Loading cases…</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <nav id="pagination" class="bcn-pagination" aria-label="Pagination" hidden></nav>
+    </div>
+  </main>
+
+  <footer class="bcn-footer">
+    <div class="bcn-container">
+      <ul>
+        <li><a href="accessibility.html">Accessibility statement</a></li>
+      </ul>
+      <p>CareBridge is an independent demonstration project. All names, case numbers and IDs are fictional. Eligibility rules use sample values and are not real program policy.</p>
+    </div>
+  </footer>
+
+  <!-- Persistent live regions used by js/a11y/announcer.js (must exist before content changes). -->
+  <div id="bcn-live-polite" class="bcn-visually-hidden" aria-live="polite" aria-atomic="true"></div>
+  <div id="bcn-live-assertive" class="bcn-visually-hidden" aria-live="assertive" aria-atomic="true"></div>
+</body>
+</html>

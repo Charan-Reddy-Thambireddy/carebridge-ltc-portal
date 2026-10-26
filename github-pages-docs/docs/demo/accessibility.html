@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How CareBridge meets WCAG 2.1 AA and Section 508.">
+  <title>Accessibility statement – CareBridge</title>
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <script type="module" src="js/layout.js"></script>
+</head>
+<body>
+  <a class="bcn-skip-link" href="#main">Skip to main content</a>
+
+  <header class="bcn-header">
+    <div class="bcn-demo-banner">
+      <p class="bcn-container"><strong>Live demo with fictional data.</strong> Not an official government website. <a href="../index.html">Back to Charan Reddy's portfolio</a></p>
+    </div>
+    <div class="bcn-container bcn-header__inner">
+      <a class="bcn-header__brand" href="index.html">
+        <svg class="bcn-header__logo" viewBox="0 0 36 36" aria-hidden="true" focusable="false"><rect width="36" height="36" rx="8" fill="#ffbf47"/><path d="M7 24c3.5-7 7.5-10.5 11-10.5S25.5 17 29 24" fill="none" stroke="#10303b" stroke-width="3.2" stroke-linecap="round"/><path d="M5 27h26" stroke="#10303b" stroke-width="3.2" stroke-linecap="round"/><circle cx="18" cy="9" r="2.6" fill="#10303b"/></svg>
+        <span>CareBridge <span class="bcn-header__tagline">Long-term care &amp; Medicare support</span></span>
+      </a>
+      <button class="bcn-header__menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" data-menu-toggle hidden>Menu</button>
+      <nav id="primary-nav" class="bcn-nav" aria-label="Main">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="eligibility.html">Check eligibility</a></li>
+            <li><a href="cases.html">Caseworker queue</a></li>
+            <li><a href="accessibility.html" aria-current="page">Accessibility</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <div class="bcn-container bcn-main">
+      <nav class="bcn-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="accessibility.html" aria-current="page">Accessibility</a></li>
+        </ol>
+      </nav>
+
+      <h1>Accessibility statement</h1>
+      <p class="bcn-lead">CareBridge is designed so that older adults, people with disabilities, caregivers and agency staff can use it independently, with or without assistive technology.</p>
+
+      <h2>Conformance target</h2>
+      <p>This site aims to conform to the <a href="https://www.w3.org/TR/WCAG21/">Web Content Accessibility Guidelines (WCAG) 2.1</a> at Level AA, which is the standard referenced by the Section 508 refresh and the U.S. Department of Justice ADA Title II rule for state and local government websites.</p>
+
+      <h2>What you can do on this site</h2>
+      <ul>
+        <li>Use every feature with a keyboard alone</li>
+        <li>Zoom text up to 400% without content being cut off or needing to scroll in two directions</li>
+        <li>Use a screen reader such as JAWS, NVDA or VoiceOver, including announcements when results load or a decision is saved</li>
+        <li>Use Windows high contrast (forced colors) or turn off animation in your operating system</li>
+        <li>Request notices in large print, Braille, audio or an accessible electronic format</li>
+      </ul>
+
+      <h2>How we test</h2>
+      <ul>
+        <li>Automated: axe-core scans of every page in the continuous integration pipeline. The build fails on any WCAG 2.1 A or AA violation.</li>
+        <li>Manual keyboard testing: focus order, visible focus, no keyboard traps, dialog focus management</li>
+        <li>Screen readers: JAWS and NVDA with Chrome and Firefox on Windows, VoiceOver with Safari on macOS and iOS</li>
+        <li>Zoom and reflow at 200% and 400%, and a 320 CSS pixel wide viewport</li>
+        <li>Color contrast checks of every design token pairing</li>
+      </ul>
+
+      <h2>Known limitations</h2>
+      <p>This is a demonstration project. Staff sign-in, document upload and printed notices are not implemented. The API documentation page (Swagger UI) is a third-party tool provided only for developers and is not covered by this statement.</p>
+
+      <h2>Feedback</h2>
+      <p>If you find a barrier on this site, please open an issue in the project repository and describe the page, what you were trying to do and the assistive technology you were using.</p>
+    </div>
+  </main>
+
+  <footer class="bcn-footer">
+    <div class="bcn-container">
+      <ul>
+        <li><a href="accessibility.html">Accessibility statement</a></li>
+      </ul>
+      <p>CareBridge is an independent demonstration project. All names, case numbers and IDs are fictional. Eligibility rules use sample values and are not real program policy.</p>
+    </div>
+  </footer>
+
+  <!-- Persistent live regions used by js/a11y/announcer.js (must exist before content changes). -->
+  <div id="bcn-live-polite" class="bcn-visually-hidden" aria-live="polite" aria-atomic="true"></div>
+  <div id="bcn-live-assertive" class="bcn-visually-hidden" aria-live="assertive" aria-atomic="true"></div>
+</body>
+</html>

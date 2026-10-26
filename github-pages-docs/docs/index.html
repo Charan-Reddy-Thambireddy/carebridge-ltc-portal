@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Charan Reddy Portfolio</title>
+<meta name="description" content="Charan Reddy, Senior .NET Full Stack Developer. Accessible Medicaid and Medicare web applications built with C#, ASP.NET Core and WCAG 2.1 AA front ends.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;0,800;1,400&display=swap">
+<style>
+/* Layout: one left-aligned reading column (max 70rem) with full-width bands; the live demo is the hero. */
+:root {
+  --bg: #f4f7f7;
+  --surface: #ffffff;
+  --ink: #12232a;
+  --muted: #45565d;
+  --line: #c9d5d8;
+  --accent: #0a5c70;
+  --accent-ink: #ffffff;
+  --band: #10303b;
+  --band-ink: #ffffff;
+  --band-muted: #c4dbe1;
+  --halo: #ffbf47;
+  --halo-ink: #0b0c0c;
+  --code-bg: #0f2229;
+  --code-ink: #e3eef1;
+  --ok: #1d6b3c;
+  --font-body: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", Verdana, "Segoe UI", sans-serif;
+  --font-mono: "Atkinson Hyperlegible Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  --step--1: 0.9375rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.3rem;
+  --step-2: 1.75rem;
+  --step-3: clamp(2.1rem, 1.5rem + 2.6vw, 3.4rem);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c181d; --surface: #12242b; --ink: #e5eef0; --muted: #a8bcc2; --line: #2b4650;
+    --accent: #7fd0e2; --accent-ink: #06222a; --band: #081216; --band-ink: #f1f7f8; --band-muted: #a9c5cc;
+    --code-bg: #071216; --code-ink: #e3eef1; --ok: #7fd49b; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c181d; --surface: #12242b; --ink: #e5eef0; --muted: #a8bcc2; --line: #2b4650;
+  --accent: #7fd0e2; --accent-ink: #06222a; --band: #081216; --band-ink: #f1f7f8; --band-muted: #a9c5cc;
+  --code-bg: #071216; --code-ink: #e3eef1; --ok: #7fd49b; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6; }
+h1, h2, h3 { line-height: 1.15; text-wrap: balance; margin: 0; font-weight: 800; }
+h2 { font-size: var(--step-2); }
+h3 { font-size: var(--step-1); font-weight: 600; }
+p, ul, ol { margin: 0; }
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 3px; }
+:focus-visible { outline: 3px solid var(--halo-ink); outline-offset: 2px; box-shadow: 0 0 0 6px var(--halo); border-radius: 2px; }
+.mono { font-family: var(--font-mono); font-size: 0.92em; }
+.num { font-variant-numeric: tabular-nums; text-align: right; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.wrap { max-width: 70rem; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.skip { position: absolute; left: 8px; top: 8px; z-index: 20; padding: 0.6rem 1rem; background: var(--halo); color: var(--halo-ink); font-weight: 600; transform: translateY(-200%); }
+.skip:focus { transform: none; }
+
+/* Top bar */
+.topbar { background: var(--band); color: var(--band-ink); }
+.topbar .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1.5rem; padding-block: 0.75rem; }
+.topbar a { color: var(--band-ink); }
+.brand { font-weight: 800; text-decoration: none; letter-spacing: 0.01em; display: inline-flex; align-items: center; min-height: 2.75rem; }
+.topbar ul { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; list-style: none; padding: 0; }
+.topbar li a { display: inline-flex; align-items: center; min-height: 2.75rem; padding-inline: 0.25rem; }
+
+/* Hero */
+.hero { background: var(--band); color: var(--band-ink); padding-block: 2.5rem 3.5rem; }
+.hero .wrap { display: grid; gap: 2.5rem; align-items: center; }
+@media (min-width: 60rem) { .hero .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); } }
+.eyebrow { font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: 0.06em; text-transform: uppercase; color: var(--halo); }
+.hero h1 { font-size: var(--step-3); margin-block: 0.75rem 1rem; letter-spacing: -0.01em; }
+.hero .lead { font-size: var(--step-1); color: var(--band-muted); max-width: 34rem; }
+.hero .lead strong { color: var(--band-ink); font-weight: 600; }
+.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 2.75rem; padding: 0.55rem 1.25rem; border: 2px solid var(--halo); border-radius: 4px; background: var(--halo); color: var(--halo-ink); font-weight: 600; text-decoration: none; }
+.btn:hover { text-decoration: underline; text-decoration-thickness: 2px; }
+.btn.ghost { background: transparent; color: var(--band-ink); border-color: var(--band-muted); }
+.contact { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-top: 1.5rem; font-size: var(--step--1); color: var(--band-muted); }
+.contact a { color: var(--band-ink); }
+.copy { min-height: 2rem; padding: 0.1rem 0.6rem; margin-left: 0.4rem; border: 1px solid var(--band-muted); border-radius: 4px; background: transparent; color: var(--band-ink); font: inherit; font-size: 0.85rem; cursor: pointer; }
+
+/* Browser-framed screenshot of the demo */
+.frame { margin: 0; border-radius: 10px; overflow: hidden; border: 1px solid #335560; background: #0a1418; box-shadow: 0 24px 60px -24px rgb(0 0 0 / 0.7); }
+.frame-bar { display: flex; align-items: center; gap: 0.4rem; padding: 0.55rem 0.8rem; background: #1b3640; color: #c4dbe1; font-family: var(--font-mono); font-size: 0.8rem; }
+.frame-bar i { width: 0.65rem; height: 0.65rem; border-radius: 50%; background: #4b6a74; }
+.frame-bar span { margin-left: 0.6rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.frame img { display: block; width: 100%; height: auto; }
+.frame figcaption { padding: 0.6rem 0.9rem; font-size: var(--step--1); color: #c4dbe1; background: #1b3640; }
+
+/* Sections */
+main section { padding-block: 3.5rem; border-bottom: 1px solid var(--line); }
+.section-head { display: grid; gap: 0.5rem; margin-bottom: 1.75rem; max-width: 46rem; }
+.section-head p { color: var(--muted); }
+.kicker { font-family: var(--font-mono); font-size: var(--step--1); color: var(--accent); letter-spacing: 0.05em; text-transform: uppercase; }
+
+/* Facts strip */
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; margin-top: -1.75rem; position: relative; }
+.fact { background: var(--surface); padding: 1.1rem 1.25rem; display: grid; gap: 0.2rem; align-content: start; }
+.fact b { font-size: var(--step-1); font-weight: 800; }
+.fact span { color: var(--muted); font-size: var(--step--1); }
+
+/* Try-it tasks */
+.tasks { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); list-style: none; padding: 0; counter-reset: task; }
+.task { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 1.25rem; display: grid; gap: 0.6rem; align-content: start; counter-increment: task; }
+.task h3::before { content: counter(task); display: inline-grid; place-items: center; width: 1.8rem; height: 1.8rem; margin-right: 0.6rem; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-size: 0.95rem; vertical-align: 0.1em; }
+.task ul { padding-left: 1.2rem; color: var(--muted); display: grid; gap: 0.3rem; }
+.task ul strong { color: var(--ink); font-weight: 600; }
+.task a.go { font-weight: 600; margin-top: 0.25rem; }
+kbd { font-family: var(--font-mono); font-size: 0.85em; padding: 0.05rem 0.35rem; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; background: var(--bg); color: var(--ink); }
+
+/* Gallery */
+.gallery { display: grid; gap: 1.25rem; margin-top: 2rem; }
+@media (min-width: 44rem) { .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.shot--phone img { object-fit: contain; object-position: center top; background: var(--bg); }
+.shot { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.shot img { display: block; width: 100%; height: 15rem; object-fit: cover; object-position: top left; border-bottom: 1px solid var(--line); }
+.shot figcaption { padding: 0.75rem 1rem; font-size: var(--step--1); color: var(--muted); }
+.shot figcaption b { color: var(--ink); display: block; font-weight: 600; }
+
+/* Evidence */
+.evidence { display: grid; gap: 1.5rem; }
+@media (min-width: 56rem) { .evidence { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); } }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 1.25rem; display: grid; gap: 1rem; align-content: start; min-width: 0; }
+.result-list { list-style: none; padding: 0; display: grid; gap: 0.65rem; }
+.result-list li { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem; align-items: start; }
+.check { width: 1.35rem; height: 1.35rem; margin-top: 0.15rem; color: var(--ok); }
+.table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+caption { text-align: left; font-weight: 600; font-size: var(--step-0); padding-bottom: 0.5rem; }
+th, td { text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--line); vertical-align: middle; }
+thead th { border-bottom: 2px solid var(--ink); white-space: nowrap; }
+.swatch { display: inline-grid; place-items: center; width: 2.6rem; height: 1.9rem; border-radius: 4px; font-weight: 800; border: 1px solid var(--line); }
+.wcag { display: grid; gap: 0.5rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); list-style: none; padding: 0; }
+.wcag li { padding: 0.6rem 0.8rem; border-left: 4px solid var(--accent); background: var(--surface); border-radius: 0 6px 6px 0; font-size: var(--step--1); }
+.wcag b { font-family: var(--font-mono); font-weight: 600; margin-right: 0.35rem; }
+
+/* Code viewer */
+.code-tabs { display: flex; flex-wrap: wrap; gap: 0.25rem; border-bottom: 2px solid var(--line); }
+.code-tab { min-height: 2.75rem; padding: 0.4rem 0.9rem; border: 2px solid transparent; border-bottom: 0; border-radius: 6px 6px 0 0; margin-bottom: -2px; background: transparent; color: var(--accent); font: inherit; font-size: var(--step--1); text-decoration: underline; cursor: pointer; }
+.code-tab[aria-selected="true"] { background: var(--code-bg); color: var(--code-ink); border-color: var(--code-bg); text-decoration: none; font-weight: 600; }
+.code-panel { background: var(--code-bg); color: var(--code-ink); border-radius: 0 0 8px 8px; }
+.code-meta { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; justify-content: space-between; padding: 0.8rem 1rem; border-bottom: 1px solid #284650; font-size: var(--step--1); color: #b7cdd3; }
+.code-meta .mono { color: var(--halo); }
+.code-scroll { overflow: auto; max-height: 30rem; }
+.code-scroll pre { margin: 0; padding: 1rem; font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.55; tab-size: 4; }
+
+/* Skills mapped to the role */
+.weights { display: grid; gap: 1rem; }
+.weight { display: grid; gap: 0.5rem 1.5rem; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 1.1rem 1.25rem; }
+@media (min-width: 48rem) { .weight { grid-template-columns: 14rem minmax(0, 1fr); } }
+.weight h3 { font-size: var(--step-0); }
+.bar { height: 0.5rem; border-radius: 99px; background: var(--line); overflow: hidden; margin-top: 0.5rem; }
+.bar span { display: block; height: 100%; background: var(--accent); }
+.weight p { color: var(--muted); font-size: var(--step--1); margin-top: 0.3rem; }
+.weight ul { padding-left: 1.1rem; display: grid; gap: 0.25rem; }
+
+/* Experience timeline */
+.timeline { list-style: none; padding: 0; display: grid; gap: 0; border-left: 2px solid var(--line); margin-left: 0.4rem; }
+.role { position: relative; padding: 0 0 2rem 1.5rem; display: grid; gap: 0.35rem; max-width: 52rem; }
+.role::before { content: ""; position: absolute; left: -0.5rem; top: 0.45rem; width: 0.9rem; height: 0.9rem; border-radius: 50%; background: var(--surface); border: 3px solid var(--accent); }
+.role .when { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); }
+.role ul { padding-left: 1.1rem; display: grid; gap: 0.25rem; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; padding: 0; }
+.chips li { padding: 0.15rem 0.6rem; border: 1px solid var(--line); border-radius: 99px; font-size: 0.85rem; background: var(--surface); }
+
+footer { padding-block: 2.5rem 3rem; color: var(--muted); font-size: var(--step--1); }
+footer .wrap { display: grid; gap: 0.6rem; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
+@media (forced-colors: active) { .task, .panel, .shot, .weight, .fact { border: 1px solid CanvasText; } :focus-visible { outline-color: Highlight; box-shadow: none; } }
+</style>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top">Charan Reddy</a>
+    <nav aria-label="Portfolio sections">
+      <ul>
+        <li><a href="#project">Project</a></li>
+        <li><a href="#accessibility">Accessibility</a></li>
+        <li><a href="#code">Code</a></li>
+        <li><a href="#fit">Role fit</a></li>
+        <li><a href="#experience">Experience</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <div class="hero" id="top">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Senior .NET Full Stack Developer &#183; WCAG 2.1 AA</p>
+        <h1>Accessible public-benefits software, from the SQL table to the screen reader.</h1>
+        <p class="lead">I'm Charan Reddy. I have <strong>8+ years</strong> of experience building C# / ASP.NET Core services and Angular and React front ends. I currently work on a <strong>Medicaid and Medicare long-term care platform</strong> for a city social services agency.</p>
+        <div class="actions">
+          <a class="btn" href="demo/index.html">Open the live demo</a>
+          <a class="btn ghost" href="https://github.com/Charan-Reddy-Thambireddy/carebridge-ltc-portal">Source code on GitHub</a>
+        </div>
+        <p class="contact">
+          <span>Email: <span class="mono" id="email">charanreddythambireddy@gmail.com</span><button class="copy" type="button" data-copy="email" aria-label="Copy email address">Copy</button></span>
+          <a href="https://www.linkedin.com/in/charan-reddy-thambireddy-729a70211/">LinkedIn profile</a>
+        </p>
+      </div>
+      <figure class="frame">
+        <div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>carebridge / eligibility.html</span></div>
+        <img src="screenshots/hero-eligibility.png" alt="CareBridge eligibility screener after an empty submit: a red-bordered 'There is a problem' summary lists seven errors as links, and each question shows its own inline error message." width="1280" height="1180">
+        <figcaption>The eligibility screener's error summary. Focus moves here on submit.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="facts" role="list" aria-label="At a glance">
+      <div class="fact" role="listitem"><b>.NET 6/8 &#183; C#</b><span>ASP.NET Core Web API, EF Core, microservices</span></div>
+      <div class="fact" role="listitem"><b>Angular &#183; React</b><span>HTML5, SCSS, TypeScript, Bootstrap and Material</span></div>
+      <div class="fact" role="listitem"><b>WCAG 2.1 AA</b><span>axe DevTools, JAWS, keyboard and zoom testing</span></div>
+      <div class="fact" role="listitem"><b>Azure DevOps</b><span>CI/CD pipelines &#183; Microsoft AZ-204 certified</span></div>
+    </div>
+  </div>
+
+  <section id="project" aria-labelledby="project-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Featured project</p>
+        <h2 id="project-heading">CareBridge: long-term care and Medicare support portal</h2>
+        <p>An independent sample built for this application. The public side is a plain-language eligibility screener for Medicaid long-term care, home and community-based services, and the Medicare Savings Program. The staff side is a caseworker queue and a case page for approving or denying service authorizations. All data is fictional.</p>
+      </div>
+
+      <h3 id="try-heading">Try it yourself: three tasks, about five minutes</h3>
+      <p class="sr-only">Each task opens a page of the live demo.</p>
+      <ol class="tasks" aria-labelledby="try-heading">
+        <li class="task">
+          <h3>Make a mistake on the form</h3>
+          <ul>
+            <li>Select <strong>Check eligibility</strong> without answering.</li>
+            <li>Focus jumps to the error summary and the page title starts with "Error:".</li>
+            <li>Select an error link: focus goes to that field, with its label in view.</li>
+          </ul>
+          <a class="go" href="demo/eligibility.html">Open the eligibility screener</a>
+        </li>
+        <li class="task">
+          <h3>Work the queue by keyboard</h3>
+          <ul>
+            <li>Press <kbd>Tab</kbd> to a column heading and <kbd>Enter</kbd> to sort it.</li>
+            <li>A screen reader hears the column state through <code>aria-sort</code> and the new result count.</li>
+            <li>Filters apply only when you press <strong>Apply filters</strong>.</li>
+          </ul>
+          <a class="go" href="demo/cases.html">Open the caseworker queue</a>
+        </li>
+        <li class="task">
+          <h3>Decide a service authorization</h3>
+          <ul>
+            <li>Use <kbd>&#8592;</kbd> <kbd>&#8594;</kbd> to switch tabs, then choose <strong>Decide</strong>.</li>
+            <li>Choose Deny with no reason to see validation inside the dialog.</li>
+            <li><kbd>Esc</kbd> returns focus to the button that opened it.</li>
+          </ul>
+          <a class="go" href="demo/case.html?id=6">Open a sample case</a>
+        </li>
+      </ol>
+
+      <div class="gallery">
+        <figure class="shot"><img src="screenshots/05-caseworker-queue.png" alt="Caseworker queue table sorted by beneficiary, with status and priority badges that use both text and shape." loading="lazy" width="1280" height="1964"><figcaption><b>Caseworker queue</b>Sortable headers, text-plus-shape status badges, and pagination with aria-current.</figcaption></figure>
+        <figure class="shot"><img src="screenshots/07-decision-dialog-error.png" alt="Modal dialog titled Decide service authorization showing an error summary because Deny was selected without a reason." loading="lazy" width="1280" height="900"><figcaption><b>Decision dialog</b>Native modal dialog with a focus trap, labelled fields and its own error summary.</figcaption></figure>
+        <figure class="shot"><img src="screenshots/08-decision-confirmed.png" alt="Case page with an accommodation alert asking for large-print notices and a Spanish interpreter, and a confirmation that home-delivered meals was approved." loading="lazy" width="1280" height="1210"><figcaption><b>Accommodation alert</b>A beneficiary's large-print and interpreter needs are shown to staff before any action.</figcaption></figure>
+        <figure class="shot shot--phone"><img src="screenshots/10-mobile-320-queue.png" alt="The caseworker queue at 320 pixels wide, showing a collapsed menu button and the filter form stacked in one column." loading="lazy" width="320" height="720"><figcaption><b>Reflow at 320px</b>Equal to 400% zoom, with no horizontal page scrolling.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="accessibility" aria-labelledby="a11y-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Accessibility evidence</p>
+        <h2 id="a11y-heading">Tested with tools, keyboard and assistive-technology patterns</h2>
+        <p>The project targets WCAG 2.1 AA and Section 508. Automated checks run in the CI pipeline and fail the build on any violation. The full criteria mapping and manual JAWS/NVDA test script are in the repository's <a href="https://github.com/Charan-Reddy-Thambireddy/carebridge-ltc-portal/blob/main/ACCESSIBILITY.md">ACCESSIBILITY.md</a>.</p>
+      </div>
+      <div class="evidence">
+        <div class="panel">
+          <h3>Automated results</h3>
+          <ul class="result-list">
+            <li><svg class="check" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11" fill="currentColor"/><path d="m7 12.5 3.2 3.2L17 9" fill="none" stroke="var(--surface)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>0 axe-core violations</b> across 13 page states, including form errors, the open dialog and a 320px viewport.</span></li>
+            <li><svg class="check" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11" fill="currentColor"/><path d="m7 12.5 3.2 3.2L17 9" fill="none" stroke="var(--surface)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>12 of 12 Playwright tests passing</b>: skip links, focus order, tabs, the dialog, live-region announcements and reflow.</span></li>
+            <li><svg class="check" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11" fill="currentColor"/><path d="m7 12.5 3.2 3.2L17 9" fill="none" stroke="var(--surface)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Every color token contrast-checked</b>. The lowest text pairing is 5.7:1.</span></li>
+          </ul>
+          <h3>Selected success criteria</h3>
+          <ul class="wcag">
+            <li><b>1.4.10</b>Reflow at 320px</li>
+            <li><b>2.4.3</b>Focus order in forms and dialogs</li>
+            <li><b>2.4.7</b>Two-tone visible focus ring</li>
+            <li><b>3.3.1</b>Error summary plus inline errors</li>
+            <li><b>4.1.2</b>ARIA tabs and aria-sort</li>
+            <li><b>4.1.3</b>Live-region status messages</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <div class="table-scroll" role="region" aria-labelledby="contrast-caption" tabindex="0">
+            <table>
+              <caption id="contrast-caption">Design-system color pairings</caption>
+              <thead><tr><th scope="col">Use</th><th scope="col">Sample</th><th scope="col">Colors</th><th scope="col" class="num">Ratio</th><th scope="col">Level</th></tr></thead>
+              <tbody><tr><th scope="row">Body text</th><td><span class="swatch" data-fg="#1b1f24" data-bg="#ffffff">Aa</span></td><td class="mono">#1b1f24 on #ffffff</td><td class="num">16.6:1</td><td>AAA</td></tr><tr><th scope="row">Primary / links</th><td><span class="swatch" data-fg="#0a5c70" data-bg="#ffffff">Aa</span></td><td class="mono">#0a5c70 on #ffffff</td><td class="num">7.6:1</td><td>AAA</td></tr><tr><th scope="row">Muted text</th><td><span class="swatch" data-fg="#4a5361" data-bg="#f3f5f7">Aa</span></td><td class="mono">#4a5361 on #f3f5f7</td><td class="num">7.1:1</td><td>AAA</td></tr><tr><th scope="row">Error</th><td><span class="swatch" data-fg="#b0261d" data-bg="#fdeceb">Aa</span></td><td class="mono">#b0261d on #fdeceb</td><td class="num">5.9:1</td><td>AA</td></tr><tr><th scope="row">Success</th><td><span class="swatch" data-fg="#1d6b3c" data-bg="#e5f3ea">Aa</span></td><td class="mono">#1d6b3c on #e5f3ea</td><td class="num">5.7:1</td><td>AA</td></tr><tr><th scope="row">Warning</th><td><span class="swatch" data-fg="#7a4f00" data-bg="#fff4d6">Aa</span></td><td class="mono">#7a4f00 on #fff4d6</td><td class="num">6.5:1</td><td>AA</td></tr><tr><th scope="row">Header text</th><td><span class="swatch" data-fg="#ffffff" data-bg="#10303b">Aa</span></td><td class="mono">#ffffff on #10303b</td><td class="num">13.9:1</td><td>AAA</td></tr><tr><th scope="row">Input border</th><td><span class="swatch" data-fg="#6b7480" data-bg="#ffffff">Aa</span></td><td class="mono">#6b7480 on #ffffff</td><td class="num">4.7:1</td><td>AA, 3:1 for UI</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="code" aria-labelledby="code-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Code samples</p>
+        <h2 id="code-heading">Excerpts from the repository</h2>
+        <p>These are unedited extracts. The full solution has an ASP.NET Core 8 API, EF Core, xUnit and WebApplicationFactory tests, a Sass design system, SQL Server scripts, and GitHub Actions and Azure DevOps pipelines. <a href="https://github.com/Charan-Reddy-Thambireddy/carebridge-ltc-portal">Browse all of it on GitHub</a>.</p>
+      </div>
+      <div class="code-viewer">
+        <div class="code-tabs" role="tablist" aria-label="Code samples"><button type="button" role="tab" class="code-tab" id="code-tab-csharp" aria-controls="code-panel-csharp" aria-selected="true">C# service</button><button type="button" role="tab" class="code-tab" id="code-tab-js" aria-controls="code-panel-js" aria-selected="false" tabindex="-1">JS error summary</button><button type="button" role="tab" class="code-tab" id="code-tab-tabs" aria-controls="code-panel-tabs" aria-selected="false" tabindex="-1">JS tabs</button><button type="button" role="tab" class="code-tab" id="code-tab-sass" aria-controls="code-panel-sass" aria-selected="false" tabindex="-1">Sass tokens</button><button type="button" role="tab" class="code-tab" id="code-tab-sql" aria-controls="code-panel-sql" aria-selected="false" tabindex="-1">SQL procedure</button><button type="button" role="tab" class="code-tab" id="code-tab-test" aria-controls="code-panel-test" aria-selected="false" tabindex="-1">Playwright test</button></div>
+          <div role="tabpanel" class="code-panel" id="code-panel-csharp" aria-labelledby="code-tab-csharp">
+            <p class="code-meta"><span class="mono">src/CareBridge.Api/Services/CaseService.cs</span><span>Decision with audit trail in one transaction; 409 when already decided; no PII written to the audit log.</span></p>
+            <div class="code-scroll" role="region" aria-label="C# service source code" tabindex="0"><pre><code>public async Task&lt;DecisionOutcome&gt; DecideAuthorizationAsync(
+    int caseId, int authorizationId, AuthorizationDecisionRequest request, CancellationToken ct)
+{
+    var auth = await _db.ServiceAuthorizations
+        .SingleOrDefaultAsync(a =&gt; a.Id == authorizationId &amp;&amp; a.CaseRecordId == caseId, ct);
+
+    if (auth is null)
+    {
+        return new DecisionOutcome(DecisionResultKind.NotFound);
+    }
+
+    if (auth.Status != AuthorizationStatus.Pending)
+    {
+        return new DecisionOutcome(DecisionResultKind.AlreadyDecided, ToDto(auth));
+    }
+
+    auth.Status = request.Decision!.Value;
+    auth.DecisionReason = string.IsNullOrWhiteSpace(request.Reason) ? null : request.Reason.Trim();
+    auth.DecidedBy = _user.UserName;
+    auth.DecidedUtc = _clock.GetUtcNow().UtcDateTime;
+
+    // Never write PII into audit details; reference records by ID only.
+    _audit.Record(
+        action: $&quot;Authorization{auth.Status}&quot;,
+        entityType: nameof(ServiceAuthorization),
+        entityId: auth.Id.ToString(System.Globalization.CultureInfo.InvariantCulture),
+        details: $&quot;Case {caseId}; service {auth.ServiceCode}&quot;);
+
+    await _db.SaveChangesAsync(ct);
+    return new DecisionOutcome(DecisionResultKind.Success, ToDto(auth));
+}</code></pre></div>
+          </div>
+          <div role="tabpanel" class="code-panel" id="code-panel-js" aria-labelledby="code-tab-js" hidden>
+            <p class="code-meta"><span class="mono">src/CareBridge.Api/wwwroot/js/a11y/form-errors.js</span><span>Error summary that takes focus, links to each field, and wires aria-invalid and aria-describedby.</span></p>
+            <div class="code-scroll" role="region" aria-label="JS error summary source code" tabindex="0"><pre><code>export function showErrors(form, summary, errors) {
+  clearErrors(form, summary);
+  if (!errors.length) {
+    return;
+  }
+
+  const list = summary.querySelector(&quot;ul&quot;);
+
+  for (const { field, message } of errors) {
+    const control = form.querySelector(`#${CSS.escape(field)}`);
+    if (!control) {
+      continue;
+    }
+
+    const group = control.closest(&quot;.bcn-form-group&quot;);
+    const owner = describedElementFor(control);
+    const messageEl = group?.querySelector(&quot;.bcn-error-message&quot;);
+
+    group?.classList.add(&quot;bcn-form-group--error&quot;);
+
+    // Mark every control in a radio/checkbox group invalid, not just the first.
+    const controls = owner.tagName === &quot;FIELDSET&quot; ? owner.querySelectorAll(&quot;input&quot;) : [control];
+    controls.forEach((c) =&gt; c.setAttribute(&quot;aria-invalid&quot;, &quot;true&quot;));
+
+    if (messageEl) {
+      messageEl.querySelector(&quot;[data-error-text]&quot;).textContent = message;
+      messageEl.hidden = false;
+      addToken(owner, &quot;aria-describedby&quot;, messageEl.id);
+    }
+
+    const item = document.createElement(&quot;li&quot;);
+    const link = document.createElement(&quot;a&quot;);
+    link.href = `#${field}`;
+    link.textContent = message;
+    link.addEventListener(&quot;click&quot;, (event) =&gt; {
+      // Default anchor behaviour scrolls but does not reliably focus form controls, and it
+      // hides the label/legend above the input. Focus the control and scroll its label into view.
+      event.preventDefault();
+      const label = owner.tagName === &quot;FIELDSET&quot;
+        ? owner.querySelector(&quot;legend&quot;)
+        : form.querySelector(`label[for=&quot;${CSS.escape(field)}&quot;]`);
+      (label || control).scrollIntoView({ block: &quot;start&quot; });
+      control.focus({ preventScroll: true });
+    });
+    item.append(link);
+    list.append(item);
+  }
+
+  if (!document.title.startsWith(ERROR_TITLE_PREFIX)) {
+    document.title = ERROR_TITLE_PREFIX + document.title;
+  }
+
+  summary.hidden = false;
+  summary.focus();
+}</code></pre></div>
+          </div>
+          <div role="tabpanel" class="code-panel" id="code-panel-tabs" aria-labelledby="code-tab-tabs" hidden>
+            <p class="code-meta"><span class="mono">src/CareBridge.Api/wwwroot/js/a11y/tabs.js</span><span>WAI-ARIA tabs with roving tabindex, arrow keys, Home and End.</span></p>
+            <div class="code-scroll" role="region" aria-label="JS tabs source code" tabindex="0"><pre><code>tab.addEventListener(&quot;keydown&quot;, (event) =&gt; {
+  let next = null;
+  switch (event.key) {
+    case &quot;ArrowRight&quot;:
+      next = (index + 1) % tabs.length;
+      break;
+    case &quot;ArrowLeft&quot;:
+      next = (index - 1 + tabs.length) % tabs.length;
+      break;
+    case &quot;Home&quot;:
+      next = 0;
+      break;
+    case &quot;End&quot;:
+      next = tabs.length - 1;
+      break;
+    default:
+      return;
+  }
+  event.preventDefault();
+  select(next);
+});</code></pre></div>
+          </div>
+          <div role="tabpanel" class="code-panel" id="code-panel-sass" aria-labelledby="code-tab-sass" hidden>
+            <p class="code-meta"><span class="mono">src/CareBridge.Api/Styles/tokens/_mixins.scss</span><span>Two-tone focus ring and screen-reader-only utility from the design system.</span></p>
+            <div class="code-scroll" role="region" aria-label="Sass tokens source code" tabindex="0"><pre><code>// Two-tone focus indicator (WCAG 2.4.7 Focus Visible, 2.4.11/2.4.13 in WCAG 2.2):
+// a dark outline plus a yellow halo stays visible on light, dark and brand backgrounds.
+@mixin focus-ring {
+  outline: 3px solid var(--bcn-color-focus-ink);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px var(--bcn-color-focus);
+}
+
+// Hides content visually while keeping it available to screen readers.
+@mixin visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}</code></pre></div>
+          </div>
+          <div role="tabpanel" class="code-panel" id="code-panel-sql" aria-labelledby="code-tab-sql" hidden>
+            <p class="code-meta"><span class="mono">database/002_stored_procedures.sql</span><span>Atomic decision + audit insert with UPDLOCK to serialize concurrent reviewers.</span></p>
+            <div class="code-scroll" role="region" aria-label="SQL procedure source code" tabindex="0"><pre><code>CREATE OR ALTER PROCEDURE dbo.usp_DecideServiceAuthorization
+    @CaseRecordId     INT,
+    @AuthorizationId  INT,
+    @Decision         NVARCHAR(20),
+    @Reason           NVARCHAR(500) = NULL,
+    @Actor            NVARCHAR(120),
+    @CorrelationId    NVARCHAR(64)  = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET XACT_ABORT ON;
+
+    IF @Decision NOT IN (N&#x27;Approved&#x27;, N&#x27;Denied&#x27;)
+        THROW 50001, N&#x27;Decision must be Approved or Denied.&#x27;, 1;
+    IF @Decision = N&#x27;Denied&#x27; AND NULLIF(LTRIM(RTRIM(@Reason)), N&#x27;&#x27;) IS NULL
+        THROW 50002, N&#x27;A denial requires a reason.&#x27;, 1;
+
+    BEGIN TRANSACTION;
+
+    DECLARE @Current NVARCHAR(20);
+    SELECT  @Current = Status
+    FROM    dbo.ServiceAuthorization WITH (UPDLOCK, HOLDLOCK)   -- serialize concurrent decisions
+    WHERE   Id = @AuthorizationId AND CaseRecordId = @CaseRecordId;
+
+    IF @Current IS NULL BEGIN ROLLBACK; RETURN 1; END;
+    IF @Current &lt;&gt; N&#x27;Pending&#x27; BEGIN ROLLBACK; RETURN 2; END;
+
+    UPDATE  dbo.ServiceAuthorization
+    SET     Status = @Decision,
+            DecisionReason = NULLIF(LTRIM(RTRIM(@Reason)), N&#x27;&#x27;),
+            DecidedBy = @Actor,
+            DecidedUtc = SYSUTCDATETIME()
+    WHERE   Id = @AuthorizationId;
+
+    INSERT dbo.AuditEntry (TimestampUtc, Actor, Action, EntityType, EntityId, Details, CorrelationId)
+    VALUES (SYSUTCDATETIME(), @Actor, N&#x27;Authorization&#x27; + @Decision, N&#x27;ServiceAuthorization&#x27;,
+            CAST(@AuthorizationId AS NVARCHAR(40)), N&#x27;Case &#x27; + CAST(@CaseRecordId AS NVARCHAR(20)), @CorrelationId);
+
+    COMMIT;
+    RETURN 0;
+END;</code></pre></div>
+          </div>
+          <div role="tabpanel" class="code-panel" id="code-panel-test" aria-labelledby="code-tab-test" hidden>
+            <p class="code-meta"><span class="mono">tests/accessibility/a11y.spec.js</span><span>Automated check that the dialog manages focus, validates, and passes axe in its error state.</span></p>
+            <div class="code-scroll" role="region" aria-label="Playwright test source code" tabindex="0"><pre><code>test(&quot;decision dialog manages focus, validates, and returns focus&quot;, async ({ page }) =&gt; {
+  await page.goto(&quot;/case.html?id=5#tab-authorizations&quot;);
+  const decide = page.getByRole(&quot;button&quot;, { name: /^Decide on / }).first();
+  await decide.click();
+
+  const dialog = page.getByRole(&quot;dialog&quot;, { name: &quot;Decide service authorization&quot; });
+  await expect(dialog).toBeVisible();
+  await expect(page.locator(&quot;#decision-approve&quot;)).toBeFocused();
+
+  await page.getByLabel(&quot;Deny&quot;, { exact: true }).check();
+  await dialog.getByRole(&quot;button&quot;, { name: &quot;Submit decision&quot; }).click();
+  await expect(page.locator(&quot;#decision-error-summary&quot;)).toBeFocused();
+  await expectNoViolations(page, &quot;decision dialog error state&quot;);
+
+  await page.keyboard.press(&quot;Escape&quot;);
+  await expect(dialog).toBeHidden();
+  await expect(decide).toBeFocused();
+
+  await decide.click();
+  await page.getByLabel(&quot;Approve&quot;, { exact: true }).check();
+  await dialog.getByRole(&quot;button&quot;, { name: &quot;Submit decision&quot; }).click();
+  await expect(page.locator(&quot;#decision-notice&quot;)).toBeFocused();
+  await expect(page.locator(&quot;#decision-notice&quot;)).toContainText(&quot;was approved&quot;);
+});</code></pre></div>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="fit" aria-labelledby="fit-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Role fit</p>
+        <h2 id="fit-heading">How the work maps to the role's weighting</h2>
+        <p>Senior Full Stack .NET Developer (SDP6): .NET and front-end focus, with accessibility as a core requirement across all of it.</p>
+      </div>
+      <div class="weights">
+        <div class="weight">
+          <div><h3>.NET and C#</h3><div class="bar" aria-hidden="true"><span class="w40"></span></div><p>About 40% of the role</p></div>
+          <ul><li>ASP.NET Core 8 Web API with layered services, DTOs, the Options pattern and ProblemDetails errors</li><li>EF Core with SQL Server or an in-memory provider; WebApplicationFactory integration tests</li><li>At work: .NET 6/8 microservices for eligibility, case management and service authorization</li></ul>
+        </div>
+        <div class="weight">
+          <div><h3>Front end, UI and UX</h3><div class="bar" aria-hidden="true"><span class="w40"></span></div><p>About 40% of the role</p></div>
+          <ul><li>Semantic HTML5, Sass design system with tokens and BEM components, ES-module JavaScript</li><li>Plain-language content, error prevention and responsive layouts down to 320px</li><li>At work: accessible Angular and React modules on Bootstrap and Material</li></ul>
+        </div>
+        <div class="weight">
+          <div><h3>Middleware and APIs</h3><div class="bar" aria-hidden="true"><span class="w10"></span></div><p>About 10% of the role</p></div>
+          <ul><li>Correlation-ID and security-header middleware, a strict Content-Security-Policy</li><li>PII encrypted with the ASP.NET Core Data Protection API; IDs masked in responses</li></ul>
+        </div>
+        <div class="weight">
+          <div><h3>SQL Server</h3><div class="bar" aria-hidden="true"><span class="w10"></span></div><p>About 10% of the role</p></div>
+          <ul><li>Schema with check constraints, covering indexes and an append-only audit table</li><li>Paged, whitelist-sorted queue procedure and an aging report view</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" aria-labelledby="exp-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Experience</p>
+        <h2 id="exp-heading">Recent roles</h2>
+      </div>
+      <ol class="timeline" reversed>
+        <li class="role">
+          <h3>Senior Consultant &#183; Department of Social Services, New York City</h3>
+          <p class="when">Dec 2025 &#8211; present</p>
+          <ul>
+            <li>Long-Term Care platform supporting Medicaid and Medicare service programs: enrollment, eligibility, case management and service authorization.</li>
+            <li>Accessible React and Angular interfaces, with WCAG 2.1 AA remediation verified by automated checks and keyboard testing.</li>
+            <li>.NET 6/8 microservices, Azure AD role-based access, Kafka/RabbitMQ events, SQL Server reporting, Azure DevOps CI/CD.</li>
+          </ul>
+        </li>
+        <li class="role">
+          <h3>Software Engineer &#183; Euromonitor International</h3>
+          <p class="when">Dec 2021 &#8211; Nov 2025</p>
+          <ul>
+            <li>Modernized ASP.NET Core services to .NET 6/8 and built Angular and React micro-UIs for enterprise analytics dashboards.</li>
+            <li>Tested with axe DevTools and JAWS, and remediated keyboard, focus-management and screen-reader issues to WCAG 2.1 AA.</li>
+          </ul>
+        </li>
+        <li class="role">
+          <h3>.NET Developer &#183; Karnataka State Agricultural Department</h3>
+          <p class="when">Apr 2021 &#8211; Nov 2021</p>
+          <ul><li>Statewide schemes application using .NET Core, React and SQL Server, including beneficiary eligibility filtering across department APIs.</li></ul>
+        </li>
+        <li class="role">
+          <h3>Software Developer &#183; Blackwater Tech</h3>
+          <p class="when">May 2018 &#8211; Apr 2021</p>
+          <ul><li>ASP.NET MVC and Core applications with Angular Material and Bootstrap front ends.</li></ul>
+        </li>
+      </ol>
+      <h3>Certifications and education</h3>
+      <ul class="chips" aria-label="Certifications and education">
+        <li>Microsoft Azure Developer (AZ-204)</li>
+        <li>Microsoft Azure Fundamentals (AZ-900)</li>
+        <li>B.E., Anna University (Panimalar Engineering College)</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>CareBridge is an independent demonstration project. It contains no client or agency code, and all names, case numbers and IDs are fictional. The live demo uses an in-browser copy of the API's sample data and rules.</p>
+    <p>This page is set in Atkinson Hyperlegible, a typeface the Braille Institute designed for readers with low vision.</p>
+  </div>
+</footer>
+
+<script>
+  // Contrast swatches: colors are set from data attributes (keeps markup free of inline styles).
+  document.querySelectorAll(".swatch").forEach((s) => { s.style.color = s.dataset.fg; s.style.background = s.dataset.bg; });
+  document.querySelectorAll(".bar .w40").forEach((b) => { b.style.width = "40%"; });
+  document.querySelectorAll(".bar .w10").forEach((b) => { b.style.width = "10%"; });
+
+  // Copy email: clipboard may be refused in some viewers, so fall back to selecting the text.
+  document.querySelectorAll("[data-copy]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const target = document.getElementById(btn.dataset.copy);
+      const done = () => { btn.textContent = "Copied"; setTimeout(() => { btn.textContent = "Copy"; }, 2000); };
+      const select = () => { const r = document.createRange(); r.selectNodeContents(target); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); btn.textContent = "Selected"; };
+      try { navigator.clipboard.writeText(target.textContent).then(done, select); } catch { select(); }
+    });
+  });
+
+  // Code sample tabs: WAI-ARIA tabs pattern (same behavior as the project's tabs.js).
+  const tabs = [...document.querySelectorAll('.code-tabs [role="tab"]')];
+  function selectTab(i, focus) {
+    tabs.forEach((t, j) => {
+      const on = i === j;
+      t.setAttribute("aria-selected", String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+    });
+    if (focus) tabs[i].focus();
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener("click", () => selectTab(i, true));
+    t.addEventListener("keydown", (e) => {
+      const map = { ArrowRight: (i + 1) % tabs.length, ArrowLeft: (i - 1 + tabs.length) % tabs.length, Home: 0, End: tabs.length - 1 };
+      if (e.key in map) { e.preventDefault(); selectTab(map[e.key], true); }
+    });
+  });
+</script>
+</body>
+</html>

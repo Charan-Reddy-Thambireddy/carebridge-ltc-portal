@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Case details, service authorizations and care plan.">
+  <title>Case details – CareBridge</title>
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <script type="module" src="js/layout.js"></script>
+  <script type="module" src="js/pages/case-detail.js"></script>
+</head>
+<body>
+  <a class="bcn-skip-link" href="#main">Skip to main content</a>
+
+  <header class="bcn-header">
+    <div class="bcn-demo-banner">
+      <p class="bcn-container"><strong>Live demo with fictional data.</strong> Not an official government website. <a href="../index.html">Back to Charan Reddy's portfolio</a></p>
+    </div>
+    <div class="bcn-container bcn-header__inner">
+      <a class="bcn-header__brand" href="index.html">
+        <svg class="bcn-header__logo" viewBox="0 0 36 36" aria-hidden="true" focusable="false"><rect width="36" height="36" rx="8" fill="#ffbf47"/><path d="M7 24c3.5-7 7.5-10.5 11-10.5S25.5 17 29 24" fill="none" stroke="#10303b" stroke-width="3.2" stroke-linecap="round"/><path d="M5 27h26" stroke="#10303b" stroke-width="3.2" stroke-linecap="round"/><circle cx="18" cy="9" r="2.6" fill="#10303b"/></svg>
+        <span>CareBridge <span class="bcn-header__tagline">Long-term care &amp; Medicare support</span></span>
+      </a>
+      <button class="bcn-header__menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" data-menu-toggle hidden>Menu</button>
+      <nav id="primary-nav" class="bcn-nav" aria-label="Main">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="eligibility.html">Check eligibility</a></li>
+            <li><a href="cases.html" aria-current="page">Caseworker queue</a></li>
+            <li><a href="accessibility.html">Accessibility</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <div class="bcn-container bcn-main">
+      <nav class="bcn-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="cases.html">Caseworker queue</a></li>
+          <li><span id="breadcrumb-current" aria-current="page">Case</span></li>
+        </ol>
+      </nav>
+
+      <h1 id="case-heading">Loading case…</h1>
+      <p id="case-loading" class="bcn-loading">Loading case details…</p>
+
+      <div id="case-error" class="bcn-alert bcn-alert--error" hidden>
+        <svg class="bcn-alert__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5 22.5 21h-21z" fill="currentColor"/><path d="M12 9.5v5M12 17.6v.1" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
+        <div class="bcn-alert__body">
+          <p data-error-text></p>
+          <p><a href="cases.html">Return to the caseworker queue</a></p>
+        </div>
+      </div>
+
+      <div id="case-content" hidden>
+        <p class="bcn-lead" id="case-subtitle"></p>
+        <p id="case-badges" class="bcn-button-group"></p>
+
+        <div id="accommodation-alert" class="bcn-alert" hidden>
+          <svg class="bcn-alert__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M12 10.5v6M12 7.2v.1" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
+          <div class="bcn-alert__body">
+            <h2 class="bcn-visually-hidden">Accommodation</h2>
+            <p id="accommodation-text"></p>
+          </div>
+        </div>
+
+        <div id="decision-notice" class="bcn-alert bcn-alert--success" tabindex="-1" hidden>
+          <svg class="bcn-alert__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="bcn-alert__body"><p data-notice-text></p></div>
+        </div>
+
+        <div class="bcn-tabs" data-tabs>
+          <div class="bcn-tabs__list" role="tablist" aria-label="Case sections">
+            <button class="bcn-tabs__tab" type="button" role="tab" id="tab-overview" aria-controls="panel-overview" aria-selected="true">Overview</button>
+            <button class="bcn-tabs__tab" type="button" role="tab" id="tab-authorizations" aria-controls="panel-authorizations" aria-selected="false" tabindex="-1">Service authorizations</button>
+            <button class="bcn-tabs__tab" type="button" role="tab" id="tab-care-plan" aria-controls="panel-care-plan" aria-selected="false" tabindex="-1">Care plan</button>
+          </div>
+
+          <div class="bcn-tabs__panel" role="tabpanel" id="panel-overview" aria-labelledby="tab-overview" tabindex="0">
+            <h2>Beneficiary</h2>
+            <dl class="bcn-summary-list" id="beneficiary-details"></dl>
+          </div>
+
+          <div class="bcn-tabs__panel" role="tabpanel" id="panel-authorizations" aria-labelledby="tab-authorizations" tabindex="0" hidden>
+            <h2>Service authorizations</h2>
+            <div class="bcn-table-region" role="region" aria-labelledby="auth-caption" tabindex="0">
+              <table class="bcn-table">
+                <caption id="auth-caption">Requested and authorized services</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Service</th>
+                    <th scope="col" class="bcn-table__numeric">Units per week</th>
+                    <th scope="col">Dates</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="auth-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="bcn-tabs__panel" role="tabpanel" id="panel-care-plan" aria-labelledby="tab-care-plan" tabindex="0" hidden>
+            <h2>Care plan goals</h2>
+            <ul id="care-plan-list" class="bcn-grid bcn-grid--2" role="list"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <dialog id="decision-dialog" class="bcn-dialog" aria-labelledby="decision-title" aria-describedby="decision-service">
+      <form id="decision-form" novalidate>
+        <div class="bcn-dialog__header">
+          <h2 id="decision-title">Decide service authorization</h2>
+          <button class="bcn-dialog__close" type="button" data-dialog-close aria-label="Close"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 4l12 12M16 4 4 16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
+        </div>
+        <div class="bcn-dialog__body">
+          <p id="decision-service"></p>
+
+          <div class="bcn-error-summary" id="decision-error-summary" tabindex="-1" aria-labelledby="decision-error-title" hidden>
+            <h3 class="bcn-error-summary__title" id="decision-error-title">There is a problem</h3>
+            <ul></ul>
+          </div>
+
+          <div class="bcn-form-group">
+            <fieldset class="bcn-fieldset" data-error-group>
+              <legend class="bcn-fieldset__legend">Decision</legend>
+              <p class="bcn-error-message" id="decision-error" hidden><span class="bcn-visually-hidden">Error:</span> <span data-error-text></span></p>
+              <div class="bcn-choices">
+                <div class="bcn-choice">
+                  <input id="decision-approve" name="decision" type="radio" value="Approved">
+                  <label for="decision-approve">Approve</label>
+                </div>
+                <div class="bcn-choice">
+                  <input id="decision-deny" name="decision" type="radio" value="Denied">
+                  <label for="decision-deny">Deny</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="bcn-form-group">
+            <label class="bcn-label" for="decision-reason">Reason <span class="bcn-hint">(required if denying)</span></label>
+            <span class="bcn-hint" id="decision-reason-hint">Write in plain language. The reason is included in the notice sent to the beneficiary.</span>
+            <p class="bcn-error-message" id="decision-reason-error" hidden><span class="bcn-visually-hidden">Error:</span> <span data-error-text></span></p>
+            <textarea class="bcn-textarea" id="decision-reason" name="reason" rows="4" aria-describedby="decision-reason-hint decision-reason-count"></textarea>
+            <p class="bcn-char-count" id="decision-reason-count">You have 500 characters remaining</p>
+          </div>
+        </div>
+        <div class="bcn-dialog__footer bcn-button-group">
+          <button class="bcn-button" type="submit">Submit decision</button>
+          <button class="bcn-button bcn-button--secondary" type="button" data-dialog-close>Cancel</button>
+        </div>
+      </form>
+    </dialog>
+  </main>
+
+  <footer class="bcn-footer">
+    <div class="bcn-container">
+      <ul>
+        <li><a href="accessibility.html">Accessibility statement</a></li>
+      </ul>
+      <p>CareBridge is an independent demonstration project. All names, case numbers and IDs are fictional. Eligibility rules use sample values and are not real program policy.</p>
+    </div>
+  </footer>
+
+  <!-- Persistent live regions used by js/a11y/announcer.js (must exist before content changes). -->
+  <div id="bcn-live-polite" class="bcn-visually-hidden" aria-live="polite" aria-atomic="true"></div>
+  <div id="bcn-live-assertive" class="bcn-visually-hidden" aria-live="assertive" aria-atomic="true"></div>
+</body>
+</html>

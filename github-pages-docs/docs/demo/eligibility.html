@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Answer seven questions to see which long-term care and Medicare programs may help.">
+  <title>Check if you may qualify – CareBridge</title>
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <script type="module" src="js/layout.js"></script>
+  <script type="module" src="js/pages/eligibility.js"></script>
+</head>
+<body>
+  <a class="bcn-skip-link" href="#main">Skip to main content</a>
+
+  <header class="bcn-header">
+    <div class="bcn-demo-banner">
+      <p class="bcn-container"><strong>Live demo with fictional data.</strong> Not an official government website. <a href="../index.html">Back to Charan Reddy's portfolio</a></p>
+    </div>
+    <div class="bcn-container bcn-header__inner">
+      <a class="bcn-header__brand" href="index.html">
+        <svg class="bcn-header__logo" viewBox="0 0 36 36" aria-hidden="true" focusable="false"><rect width="36" height="36" rx="8" fill="#ffbf47"/><path d="M7 24c3.5-7 7.5-10.5 11-10.5S25.5 17 29 24" fill="none" stroke="#10303b" stroke-width="3.2" stroke-linecap="round"/><path d="M5 27h26" stroke="#10303b" stroke-width="3.2" stroke-linecap="round"/><circle cx="18" cy="9" r="2.6" fill="#10303b"/></svg>
+        <span>CareBridge <span class="bcn-header__tagline">Long-term care &amp; Medicare support</span></span>
+      </a>
+      <button class="bcn-header__menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" data-menu-toggle hidden>Menu</button>
+      <nav id="primary-nav" class="bcn-nav" aria-label="Main">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="eligibility.html" aria-current="page">Check eligibility</a></li>
+            <li><a href="cases.html">Caseworker queue</a></li>
+            <li><a href="accessibility.html">Accessibility</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <div class="bcn-container bcn-main">
+      <nav class="bcn-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="eligibility.html" aria-current="page">Check eligibility</a></li>
+        </ol>
+      </nav>
+
+      <div class="bcn-grid bcn-grid--sidebar">
+        <div>
+          <h1>Check if you may qualify</h1>
+          <p class="bcn-lead">Answer 7 questions to see which programs may help. It takes about 3 minutes. Your answers are not saved.</p>
+
+          <div class="bcn-error-summary" id="error-summary" tabindex="-1" aria-labelledby="error-summary-title" hidden>
+            <h2 class="bcn-error-summary__title" id="error-summary-title">There is a problem</h2>
+            <ul></ul>
+          </div>
+
+          <form id="screening-form" novalidate>
+            <p>All questions are required.</p>
+          <div class="bcn-form-group">
+            <label class="bcn-label" for="age">How old are you?</label>
+            <span class="bcn-hint" id="age-hint">Enter your age in years, for example 72.</span>
+            <p class="bcn-error-message" id="age-error" hidden><span class="bcn-visually-hidden">Error:</span> <span data-error-text></span></p>
+            <input class="bcn-input bcn-input--width-4" id="age" name="age" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" aria-describedby="age-hint">
+          </div>
+          <div class="bcn-form-group">
+            <label class="bcn-label" for="householdSize">How many people live in your household?</label>
+            <span class="bcn-hint" id="householdSize-hint">Include yourself, your spouse and anyone you support financially.</span>
+            <p class="bcn-error-message" id="householdSize-error" hidden><span class="bcn-visually-hidden">Error:</span> <span data-error-text></span></p>
+            <input class="bcn-input bcn-input--width-4" id="householdSize" name="householdSize" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" aria-describedby="householdSize-hint">
+          </div>
+          <div class="bcn-form-group">
+            <label class="bcn-label" for="monthlyIncome">What is your total monthly income before taxes?</label>
+            <span class="bcn-hint" id="monthlyIncome-hint">Include Social Security, pensions, wages and any other regular payments.</span>
+            <p class="bcn-error-message" id="monthlyIncome-error" hidden><span class="bcn-visually-hidden">Error:</span> <span data-error-text></span></p>
+            <div class="bcn-input-prefix">
+              <span class="bcn-input-prefix__symbol" aria-hidden="true">$</span>
+              <input class="bcn-input bcn-input--width-10" id="monthlyIncome" name="monthlyIncome" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-describedby="monthlyIncome-hint">
+            </div>
+          </div>
+          <div class="bcn-form-group">
+            <label class="bcn-label" for="countableAssets">What is the total value of your countable assets?</label>
+            <span class="bcn-hint" id="countableAssets-hint">Include bank accounts, stocks and bonds. Do not include your home or one vehicle.</span>
+            <p class="bcn-error-message" id="countableAssets-error" hidden><span class="bcn-visually-hidden">Error:</span> <span data-error-text></span></p>
+            <div class="bcn-input-prefix">
+              <span class="bcn-input-prefix__symbol" aria-hidden="true">$</span>
+              <input class="bcn-input bcn-input--width-10" id="countableAssets" name="countableAssets" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-describedby="countableAssets-hint">
+            </div>
+          </div>
+          <div class="bcn-form-group">
+            <fieldset class="bcn-fieldset" data-error-group aria-describedby="hasDisability-hint">
+              <legend class="bcn-fieldset__legend">Do you have a disability?</legend>
+              <span class="bcn-hint" id="hasDisability-hint">A physical or mental condition that limits one or more major life activities.</span>
+              <p class="bcn-error-message" id="hasDisability-error" hidden><span class="bcn-visually-hidden">Error:</span> <span data-error-text></span></p>
+              <div class="bcn-choices">
+                <div class="bcn-choice">
+                  <input id="hasDisability-yes" name="hasDisability" type="radio" value="true">
+                  <label for="hasDisability-yes">Yes</label>
+                </div>
+                <div class="bcn-choice">
+                  <input id="hasDisability-no" name="hasDisability" type="radio" value="false">
+                  <label for="hasDisability-no">No</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <div class="bcn-form-group">
+            <fieldset class="bcn-fieldset" data-error-group aria-describedby="hasMedicarePartA-hint">
+              <legend class="bcn-fieldset__legend">Do you have Medicare Part A?</legend>
+              <span class="bcn-hint" id="hasMedicarePartA-hint">Part A is hospital insurance. Check your red, white and blue Medicare card if you are not sure.</span>
+              <p class="bcn-error-message" id="hasMedicarePartA-error" hidden><span class="bcn-visually-hidden">Error:</span> <span data-error-text></span></p>
+              <div class="bcn-choices">
+                <div class="bcn-choice">
+                  <input id="hasMedicarePartA-yes" name="hasMedicarePartA" type="radio" value="true">
+                  <label for="hasMedicarePartA-yes">Yes</label>
+                </div>
+                <div class="bcn-choice">
+                  <input id="hasMedicarePartA-no" name="hasMedicarePartA" type="radio" value="false">
+                  <label for="hasMedicarePartA-no">No</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <div class="bcn-form-group">
+            <fieldset class="bcn-fieldset" data-error-group aria-describedby="adl-hint">
+              <legend class="bcn-fieldset__legend">Which daily activities do you need help with?</legend>
+              <span class="bcn-hint" id="adl-hint">Select all that apply.</span>
+              <p class="bcn-error-message" id="adl-error" hidden><span class="bcn-visually-hidden">Error:</span> <span data-error-text></span></p>
+              <div class="bcn-choices bcn-choices--stacked">
+                <div class="bcn-choice bcn-choice--checkbox">
+                  <input id="adl-bathing" name="adl" type="checkbox" value="bathing">
+                  <label for="adl-bathing">Bathing or showering</label>
+                </div>
+                <div class="bcn-choice bcn-choice--checkbox">
+                  <input id="adl-dressing" name="adl" type="checkbox" value="dressing">
+                  <label for="adl-dressing">Getting dressed</label>
+                </div>
+                <div class="bcn-choice bcn-choice--checkbox">
+                  <input id="adl-eating" name="adl" type="checkbox" value="eating">
+                  <label for="adl-eating">Eating</label>
+                </div>
+                <div class="bcn-choice bcn-choice--checkbox">
+                  <input id="adl-toileting" name="adl" type="checkbox" value="toileting">
+                  <label for="adl-toileting">Using the toilet</label>
+                </div>
+                <div class="bcn-choice bcn-choice--checkbox">
+                  <input id="adl-transferring" name="adl" type="checkbox" value="transferring">
+                  <label for="adl-transferring">Getting in or out of a bed or chair</label>
+                </div>
+                <div class="bcn-choice bcn-choice--checkbox">
+                  <input id="adl-continence" name="adl" type="checkbox" value="continence">
+                  <label for="adl-continence">Bladder or bowel control</label>
+                </div>
+                <div class="bcn-choice bcn-choice--checkbox">
+                  <input id="adl-none" name="adl" type="checkbox" value="none">
+                  <label for="adl-none">None of these</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+            <div class="bcn-button-group">
+              <button class="bcn-button" type="submit">Check eligibility</button>
+              <button class="bcn-button bcn-button--secondary" type="reset">Clear answers</button>
+            </div>
+          </form>
+
+          <section id="results" class="bcn-stack" aria-labelledby="results-heading" hidden>
+            <h2 id="results-heading" tabindex="-1">Your results</h2>
+            <div class="bcn-alert bcn-alert--warning">
+              <svg class="bcn-alert__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5 22.5 21h-21z" fill="currentColor"/><path d="M12 9.5v5M12 17.6v.1" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
+              <div class="bcn-alert__body"><p id="results-disclaimer"></p></div>
+            </div>
+            <ul id="results-list" class="bcn-grid" role="list"></ul>
+          </section>
+        </div>
+
+        <section aria-labelledby="help-heading">
+          <div class="bcn-panel">
+            <h2 id="help-heading">Need help?</h2>
+            <p>You can ask for this form in another language, large print, Braille or audio at no cost.</p>
+            <p>Call the (fictional) help line at <a href="tel:+15555550100">555-555-0100</a>, or TTY 711.</p>
+            <p>Help is available Monday to Friday, 8 a.m. to 5 p.m.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bcn-footer">
+    <div class="bcn-container">
+      <ul>
+        <li><a href="accessibility.html">Accessibility statement</a></li>
+      </ul>
+      <p>CareBridge is an independent demonstration project. All names, case numbers and IDs are fictional. Eligibility rules use sample values and are not real program policy.</p>
+    </div>
+  </footer>
+
+  <!-- Persistent live regions used by js/a11y/announcer.js (must exist before content changes). -->
+  <div id="bcn-live-polite" class="bcn-visually-hidden" aria-live="polite" aria-atomic="true"></div>
+  <div id="bcn-live-assertive" class="bcn-visually-hidden" aria-live="assertive" aria-atomic="true"></div>
+</body>
+</html>
